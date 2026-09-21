@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Find blood donors — BloodLink{% endblock %}
+{% block content %}
+<h1>Find a blood donor near you</h1>
+<p class="muted">Searches include compatible blood groups (e.g. O+ patients can receive O− and O+).</p>
+
+<form class="card" method="get" action="{{ url_for('index') }}">
+  <label>Blood group needed
+    <select name="blood_group" required>
+      <option value="">— select —</option>
+      {% for g in blood_groups %}
+      <option value="{{ g }}" {% if g == blood_group %}selected{% endif %}>{{ g }}</option>
+      {% endfor %}
+    </select>
+  </label>
+  <label>City
+    <input type="text" name="city" placeholder="e.g. Islamabad" value="{{ city }}">
+  </label>
+  <button type="submit">Search donors</button>
+</form>
+
+{% if searched %}
+  <h2>Matching donors{% if blood_group %} for {{ blood_group }}{% endif %}</h2>
+  {% if donors %}
+    <div class="grid">
+    {% for d in donors %}
+      <div class="card donor">
+        <div class="bg">{{ d.blood_group }}</div>
+        <div>
+          <strong>{{ d.name }}</strong><br>
+          <span class="muted">{{ d.city }} · {{ d.phone }}</span>
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+  {% else %}
+    <p>No matching donors yet. <a href="{{ url_for('new_request') }}">Post a blood request</a> so donors can find you.</p>
+  {% endif %}
+{% endif %}
+
+<div class="cta-row">
+  <a class="btn" href="{{ url_for('new_donor') }}">🩸 Register as donor</a>
+  <a class="btn secondary" href="{{ url_for('new_request') }}">📢 Request blood</a>
+</div>
+{% endblock %}
