@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Register as donor — BloodLink{% endblock %}
+{% block content %}
+<h1>Register as a blood donor</h1>
+<form class="card form" method="post">
+  <label>Full name <input type="text" name="name" required></label>
+  <label>Blood group
+    <select name="blood_group" required>
+      {% for g in blood_groups %}<option value="{{ g }}">{{ g }}</option>{% endfor %}
+    </select>
+  </label>
+  <label>City <input type="text" name="city" required></label>
+  <label>Phone <input type="text" name="phone" placeholder="03xx-xxxxxxx" required></label>
+  <button type="submit">Register</button>
+</form>
+{% endblock %}
