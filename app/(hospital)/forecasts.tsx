@@ -3,6 +3,8 @@ import { ScrollView, Text, View } from 'react-native';
 import { Header } from '../../components/layout/Header';
 import { Footer } from '../../components/layout/Footer';
 import { SEO } from '../../components/layout/SEO';
+import { Container } from '../../components/layout/Container';
+import { SectionHeader } from '../../components/layout/SectionHeader';
 import { ForecastChart } from '../../components/dashboard/ForecastChart';
 import { Alert } from '../../components/ui/Alert';
 import { Badge } from '../../components/ui/Badge';
@@ -83,25 +85,17 @@ export default function HospitalForecastsScreen() {
         description="Thirty-day blood demand forecast per group for Demo General Hospital."
       />
       <Header />
-      <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
-        <View className="max-w-6xl w-full mx-auto px-4 md:px-8 py-12 md:py-20">
-          <Text style={textStyles.eyebrow} className="text-muted">
-            FORECAST
-          </Text>
-          <Text style={textStyles.display} className="text-ink mt-3">
-            Demand, before it happens
-          </Text>
-          <Text style={[textStyles.body, { color: '#44403C' }]} className="mt-4 max-w-xl">
-            The forecasting model looks at seasonal donation patterns,
-            scheduled surgeries, and historical emergency draw to predict how
-            many units of each blood group the hospital will need over the
-            next thirty days — so drives can be planned for the groups that
-            will actually run short.
-          </Text>
+      <ScrollView className="flex-1 ambient-paper" showsVerticalScrollIndicator={false}>
+        <Container className="py-12 md:py-20">
+          <SectionHeader
+            eyebrow="FORECAST"
+            title="Demand, before it happens"
+            lede="The forecasting model looks at seasonal donation patterns, scheduled surgeries, and historical emergency draw to predict how many units of each blood group the hospital will need over the next thirty days — so drives can be planned for the groups that will actually run short."
+          />
 
           <View className="mt-10">
             <Card padding="lg">
-              <Text style={textStyles.h2} className="text-ink">
+              <Text style={textStyles.h2} className="text-ink text-balance">
                 Next 30 days, all groups
               </Text>
               <View className="flex-row gap-6 mt-3 mb-2">
@@ -124,7 +118,7 @@ export default function HospitalForecastsScreen() {
 
           <View className="mt-8">
             <Card padding="lg">
-              <Text style={textStyles.h2} className="text-ink">
+              <Text style={textStyles.h2} className="text-ink text-balance">
                 Group by group
               </Text>
               <Text style={textStyles.caption} className="text-muted mt-2">
@@ -149,7 +143,7 @@ export default function HospitalForecastsScreen() {
           <Text style={textStyles.caption} className="text-muted mt-8 text-center">
             Demo — fictional data · forecasts are simulated
           </Text>
-        </View>
+        </Container>
 
         <Footer />
       </ScrollView>
