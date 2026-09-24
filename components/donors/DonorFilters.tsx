@@ -4,6 +4,7 @@ import { BLOOD_GROUPS, type BloodGroup } from '../../lib/demo';
 import { fonts, textStyles } from '../../styles/theme';
 import { Badge } from '../ui/Badge';
 import { Input } from '../ui/Input';
+import { Container } from '../layout/Container';
 
 export interface DonorFilters {
   query: string;
@@ -28,8 +29,9 @@ export function DonorFilters({ filters, onChange, resultCount }: DonorFiltersPro
   const set = (patch: Partial<DonorFilters>) => onChange({ ...filters, ...patch });
 
   return (
-    <View className="bg-paperDeep border-y border-hairline">
-      <View className="max-w-6xl w-full mx-auto px-4 md:px-8 py-6">
+    <View className="mt-8">
+      <Container>
+        <View className="glass rounded-2xl p-5 md:p-6">
         <Input
           placeholder="Search by name or city…"
           value={filters.query}
@@ -92,7 +94,8 @@ export function DonorFilters({ filters, onChange, resultCount }: DonorFiltersPro
             donor{resultCount === 1 ? '' : 's'} found · demo data
           </Text>
         </View>
-      </View>
+        </View>
+      </Container>
     </View>
   );
 }
