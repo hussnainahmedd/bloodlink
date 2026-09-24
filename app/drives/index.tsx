@@ -7,8 +7,8 @@ import { Badge, Card, Progress } from '../../components/ui';
 import { Footer } from '../../components/layout/Footer';
 import { Header } from '../../components/layout/Header';
 import { SEO } from '../../components/layout/SEO';
-
-const WRAPPER = 'max-w-6xl w-full mx-auto px-4 md:px-8 py-12 md:py-20';
+import { Container } from '../../components/layout/Container';
+import { SectionHeader } from '../../components/layout/SectionHeader';
 
 function DriveCard({ drive }: { drive: Drive }) {
   const pct = Math.round((drive.registered / drive.capacity) * 100);
@@ -21,7 +21,7 @@ function DriveCard({ drive }: { drive: Drive }) {
         <Card>
           <View className="flex-row items-start justify-between gap-3">
             <View className="flex-1">
-              <Text style={textStyles.h3} className="text-ink">
+              <Text style={textStyles.h3} className="text-ink text-balance">
                 {drive.title}
               </Text>
               <Text style={textStyles.bodySmall} className="text-muted mt-1">
@@ -70,24 +70,19 @@ export default function Drives() {
     <View className="flex-1 bg-paper">
       <SEO title="Blood drives" description="Upcoming donation drives — find one near you and register your seat." />
       <Header />
-      <ScrollView className="flex-1">
-        <View className={WRAPPER}>
-          <Text style={textStyles.eyebrow} className="text-crimson">
-            DONATION DRIVES
-          </Text>
-          <Text style={textStyles.h1} className="text-ink mt-3">
-            Upcoming drives
-          </Text>
-          <Text style={textStyles.body} className="text-inkSoft mt-3 max-w-2xl">
-            Organized camps with doctors, volunteers, and refreshments. The whole visit takes about
-            30 minutes — register a seat so the team can plan for you.
-          </Text>
+      <ScrollView className="flex-1 ambient-paper">
+        <Container className="py-12 md:py-20">
+          <SectionHeader
+            eyebrow="DONATION DRIVES"
+            title="Upcoming drives"
+            lede="Organized camps with doctors, volunteers, and refreshments. The whole visit takes about 30 minutes — register a seat so the team can plan for you."
+          />
           <View className="mt-8 gap-5">
             {drives.map((d) => (
               <DriveCard key={d.id} drive={d} />
             ))}
           </View>
-        </View>
+        </Container>
         <Footer />
       </ScrollView>
     </View>
