@@ -7,8 +7,7 @@ import { Badge, EmptyState } from '../../components/ui';
 import { Footer } from '../../components/layout/Footer';
 import { Header } from '../../components/layout/Header';
 import { SEO } from '../../components/layout/SEO';
-
-const WRAPPER = 'max-w-3xl w-full mx-auto px-4 md:px-8 py-12 md:py-20';
+import { Container } from '../../components/layout/Container';
 
 export default function StoryDetail() {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -18,8 +17,8 @@ export default function StoryDetail() {
     <View className="flex-1 bg-paper">
       <SEO title={story ? story.title : 'Story not found'} description={story?.excerpt} />
       <Header />
-      <ScrollView className="flex-1">
-        <View className={WRAPPER}>
+      <ScrollView className="flex-1 ambient-paper">
+        <Container narrow className="py-12 md:py-20">
           <Link href="/stories" asChild>
             <Text style={{ fontFamily: fonts.sansMedium, fontSize: 14, color: '#C8102E' }}>
               ← All stories
@@ -44,7 +43,7 @@ export default function StoryDetail() {
                   {story.date}
                 </Text>
               </View>
-              <Text style={textStyles.display} className="text-ink mt-4">
+              <Text style={textStyles.display} className="text-ink mt-4 text-balance">
                 {story.title}
               </Text>
               <View className="mt-4 pb-6 border-b border-hairline">
@@ -71,7 +70,7 @@ export default function StoryDetail() {
               </View>
             </View>
           )}
-        </View>
+        </Container>
         <Footer />
       </ScrollView>
     </View>
