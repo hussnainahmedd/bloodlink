@@ -3,6 +3,8 @@ import { ScrollView, Text, View } from 'react-native';
 import { Footer } from '../components/layout/Footer';
 import { Header } from '../components/layout/Header';
 import { SEO } from '../components/layout/SEO';
+import { Container } from '../components/layout/Container';
+import { SectionHeader } from '../components/layout/SectionHeader';
 import { CompatibilityTable } from '../components/donors/CompatibilityTable';
 import { Alert } from '../components/ui/Alert';
 import { Badge } from '../components/ui/Badge';
@@ -21,32 +23,23 @@ export default function BloodGroupsScreen() {
         description="Which blood groups can donate to whom? An interactive compatibility guide with plain-language notes."
       />
       <Header />
-      <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
-        <View className="max-w-6xl w-full mx-auto px-4 md:px-8 py-12 md:py-20">
-          <Text style={textStyles.eyebrow} className="text-muted">
-            LEARN
-          </Text>
-          <Text style={textStyles.display} className="text-ink mt-3">
-            Blood group compatibility
-          </Text>
-          <Text style={[textStyles.body, { color: '#44403C' }]} className="mt-4 max-w-xl">
-            Pick your group below to see who you can donate to and who you can
-            receive from. Matching the right group to the right patient is what
-            keeps transfusions safe — and it is exactly what the matching
-            engine checks before alerting a donor.
-          </Text>
+      <ScrollView className="flex-1 ambient-paper" showsVerticalScrollIndicator={false}>
+        <Container className="py-12 md:py-20">
+          <SectionHeader
+            eyebrow="LEARN"
+            title="Blood group compatibility"
+            lede="Pick your group below to see who you can donate to and who you can receive from. Matching the right group to the right patient is what keeps transfusions safe — and it is exactly what the matching engine checks before alerting a donor."
+          />
 
           <View className="mt-10">
             <CompatibilityTable />
           </View>
 
           <View className="mt-12">
-            <Text style={textStyles.eyebrow} className="text-muted">
-              WHY IT MATTERS
-            </Text>
-            <Text style={textStyles.h1} className="text-ink mt-3">
-              Not all blood is interchangeable
-            </Text>
+            <SectionHeader
+              eyebrow="WHY IT MATTERS"
+              title="Not all blood is interchangeable"
+            />
             <Card padding="lg" className="mt-6">
               <Text style={textStyles.body} className="text-ink">
                 Red blood cells carry antigens — markers your immune system
@@ -79,7 +72,7 @@ export default function BloodGroupsScreen() {
                 </Text>
                 <Badge tone="crimson">O−</Badge>
               </View>
-              <Text style={textStyles.h2} className="text-ink mt-4">
+              <Text style={textStyles.h2} className="text-ink mt-4 text-balance">
                 One group for every emergency
               </Text>
               <Text style={textStyles.bodySmall} className="text-muted mt-3">
@@ -96,7 +89,7 @@ export default function BloodGroupsScreen() {
                 </Text>
                 <Badge tone="ink">AB+</Badge>
               </View>
-              <Text style={textStyles.h2} className="text-ink mt-4">
+              <Text style={textStyles.h2} className="text-ink mt-4 text-balance">
                 Can receive from everyone
               </Text>
               <Text style={textStyles.bodySmall} className="text-muted mt-3">
@@ -113,7 +106,7 @@ export default function BloodGroupsScreen() {
             educational content, not medical advice. Always confirm with a
             hospital blood bank.
           </Text>
-        </View>
+        </Container>
 
         <Footer />
       </ScrollView>
