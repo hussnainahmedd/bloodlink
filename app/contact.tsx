@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 import { textStyles } from '../styles/theme';
 import { Alert, Button, Card, Input } from '../components/ui';
+import { Container } from '../components/layout/Container';
 import { Footer } from '../components/layout/Footer';
 import { Header } from '../components/layout/Header';
 import { SEO } from '../components/layout/SEO';
-
-const WRAPPER = 'max-w-6xl w-full mx-auto px-4 md:px-8 py-12 md:py-20';
+import { SectionHeader } from '../components/layout/SectionHeader';
 
 const INFO_ROWS = [
   { label: 'Email', value: 'hello@bloodlink.demo' },
@@ -25,21 +25,17 @@ export default function Contact() {
     <View className="flex-1 bg-paper">
       <SEO title="Contact" description="Get in touch with the BloodLink team." />
       <Header />
-      <ScrollView className="flex-1">
-        <View className={WRAPPER}>
-          <Text style={textStyles.eyebrow} className="text-crimson">
-            CONTACT
-          </Text>
-          <Text style={textStyles.h1} className="text-ink mt-3">
-            Say hello
-          </Text>
-          <Text style={textStyles.body} className="text-inkSoft mt-3 max-w-2xl">
-            Hospitals, volunteers, donors, or the just-curious — we read everything.
-          </Text>
+      <ScrollView className="flex-1 ambient-paper" showsVerticalScrollIndicator={false}>
+        <Container className="py-12 md:py-20">
+          <SectionHeader
+            eyebrow="CONTACT"
+            title="Say hello"
+            lede="Hospitals, volunteers, donors, or the just-curious — we read everything."
+          />
 
           <View className="mt-8 flex-col md:flex-row gap-6">
             <Card className="flex-1">
-              <Text style={textStyles.h3} className="text-ink mb-5">
+              <Text style={textStyles.h3} className="text-ink mb-5 text-balance">
                 Send a message
               </Text>
               {sent ? (
@@ -62,7 +58,7 @@ export default function Contact() {
             </Card>
 
             <Card className="md:w-96 shrink-0">
-              <Text style={textStyles.h3} className="text-ink mb-5">
+              <Text style={textStyles.h3} className="text-ink mb-5 text-balance">
                 Contact info
               </Text>
               <View className="gap-4">
@@ -79,7 +75,7 @@ export default function Contact() {
               </View>
             </Card>
           </View>
-        </View>
+        </Container>
         <Footer />
       </ScrollView>
     </View>
