@@ -4,6 +4,7 @@ import { Link, useLocalSearchParams } from 'expo-router';
 import { Footer } from '../../components/layout/Footer';
 import { Header } from '../../components/layout/Header';
 import { SEO } from '../../components/layout/SEO';
+import { Container } from '../../components/layout/Container';
 import { MatchResults } from '../../components/requests/MatchResults';
 import { RequestTimeline } from '../../components/requests/RequestTimeline';
 import { ShareRequest } from '../../components/requests/ShareRequest';
@@ -40,8 +41,8 @@ export default function RequestDetailScreen() {
         description={`Live ${urgency.label.toLowerCase()} blood request for ${request.bloodGroup} in ${request.city}. Watch donors respond in real time.`}
       />
       <Header />
-      <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
-        <View className="max-w-3xl w-full mx-auto px-4 md:px-8 py-12 md:py-20">
+      <ScrollView className="flex-1 ambient-paper" showsVerticalScrollIndicator={false}>
+        <Container narrow className="py-12 md:py-20">
           <Link href="/requests" asChild>
             <Text
               style={{ fontFamily: fonts.sansMedium, fontSize: 14 }}
@@ -66,7 +67,7 @@ export default function RequestDetailScreen() {
             </Text>
           </View>
 
-          <Text style={textStyles.h1} className="text-ink mt-3">
+          <Text style={textStyles.h1} className="text-ink mt-3 text-balance">
             {request.bloodGroup} needed in {request.city}
           </Text>
 
@@ -121,7 +122,7 @@ export default function RequestDetailScreen() {
               />
             </View>
           </View>
-        </View>
+        </Container>
         <Footer />
       </ScrollView>
     </View>
