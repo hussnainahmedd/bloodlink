@@ -17,11 +17,11 @@ const paddingClass: Record<CardPadding, string> = {
 };
 
 /**
- * Flat card: white surface, 1px hairline border, 8px radius.
- * No shadows, no gradients — restraint is the design.
+ * Frosted-glass card: translucent white surface, blur, bright hairline
+ * edge, 12px radius. Floats over the ambient paper wash.
  */
 export function Card({ padding = 'md', onPress, accessibilityLabel, children, className = '', ...rest }: CardProps) {
-  const cls = `bg-white border border-hairline rounded-lg ${paddingClass[padding]} ${className}`;
+  const cls = `glass rounded-xl ${paddingClass[padding]} ${className}`;
   if (onPress) {
     return (
       <Pressable accessibilityRole="button" accessibilityLabel={accessibilityLabel} onPress={onPress} className={cls} {...rest}>
