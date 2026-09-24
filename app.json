@@ -1,0 +1,23 @@
+{
+  "expo": {
+    "experiments": {
+      "typedRoutes": true
+    },
+    "name": "BloodLink",
+    "newArchEnabled": true,
+    "orientation": "portrait",
+    "plugins": [
+      "expo-router",
+      "expo-font",
+      "expo-splash-screen",
+      "expo-status-bar"
+    ],
+    "scheme": "bloodlink",
+    "slug": "bloodlink",
+    "userInterfaceStyle": "light",
+    "version": "1.0.0",
+    "web": {
+      "bundler": "metro"
+    }
+  }
+}
