@@ -3,11 +3,11 @@ import React, { useState } from 'react';
 import { Pressable, ScrollView, Text, View } from 'react-native';
 import { fonts, textStyles } from '../styles/theme';
 import { Card } from '../components/ui';
+import { Container } from '../components/layout/Container';
 import { Footer } from '../components/layout/Footer';
 import { Header } from '../components/layout/Header';
 import { SEO } from '../components/layout/SEO';
-
-const WRAPPER = 'max-w-6xl w-full mx-auto px-4 md:px-8 py-12 md:py-20';
+import { SectionHeader } from '../components/layout/SectionHeader';
 
 const FAQS = [
   {
@@ -70,18 +70,13 @@ export default function Help() {
     <View className="flex-1 bg-paper">
       <SEO title="Help & FAQ" description="Answers to common questions about requesting, donating, alerts, and privacy." />
       <Header />
-      <ScrollView className="flex-1">
-        <View className={WRAPPER}>
-          <Text style={textStyles.eyebrow} className="text-crimson">
-            HELP CENTER
-          </Text>
-          <Text style={textStyles.h1} className="text-ink mt-3">
-            Questions, answered
-          </Text>
-          <Text style={textStyles.body} className="text-inkSoft mt-3 max-w-2xl">
-            The short version of everything people ask us about accounts, requests, donating,
-            alerts, and privacy.
-          </Text>
+      <ScrollView className="flex-1 ambient-paper" showsVerticalScrollIndicator={false}>
+        <Container className="py-12 md:py-20">
+          <SectionHeader
+            eyebrow="HELP CENTER"
+            title="Questions, answered"
+            lede="The short version of everything people ask us about accounts, requests, donating, alerts, and privacy."
+          />
 
           <View className="mt-8 gap-4 max-w-3xl">
             {FAQS.map((f, i) => (
@@ -96,7 +91,7 @@ export default function Help() {
           </View>
 
           <Card className="mt-10 max-w-3xl">
-            <Text style={textStyles.h3} className="text-ink">
+            <Text style={textStyles.h3} className="text-ink text-balance">
               Still stuck?
             </Text>
             <Text style={textStyles.bodySmall} className="text-inkSoft mt-2 mb-5">
@@ -108,7 +103,7 @@ export default function Help() {
               </Text>
             </Link>
           </Card>
-        </View>
+        </Container>
         <Footer />
       </ScrollView>
     </View>
