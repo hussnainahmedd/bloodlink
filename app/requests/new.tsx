@@ -1,8 +1,10 @@
 import React from 'react';
 import { ScrollView, Text, View } from 'react-native';
+import { Container } from '../../components/layout/Container';
 import { Footer } from '../../components/layout/Footer';
 import { Header } from '../../components/layout/Header';
 import { SEO } from '../../components/layout/SEO';
+import { SectionHeader } from '../../components/layout/SectionHeader';
 import { RequestForm } from '../../components/requests/RequestForm';
 import { Card } from '../../components/ui/Card';
 import { textStyles } from '../../styles/theme';
@@ -33,20 +35,15 @@ export default function NewRequestScreen() {
         description="Post an emergency blood request in under a minute. BloodLink's AI scores nearby donors and alerts the best matches instantly."
       />
       <Header />
-      <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
-        <View className="max-w-3xl w-full mx-auto px-4 md:px-8 py-12 md:py-20">
-          <Text style={textStyles.eyebrow} className="text-crimson">
-            EMERGENCY REQUEST
-          </Text>
-          <Text style={textStyles.h1} className="text-ink mt-3">
-            Request blood, fast.
-          </Text>
-          <Text style={textStyles.body} className="text-muted mt-3 max-w-xl">
-            Take a breath — this takes under a minute. Tell us what is needed and BloodLink starts
-            finding compatible donors the moment you post.
-          </Text>
+      <ScrollView className="flex-1 ambient-paper" showsVerticalScrollIndicator={false}>
+        <Container narrow className="py-12 md:py-20">
+          <SectionHeader
+            eyebrow="EMERGENCY REQUEST"
+            title="Request blood, fast."
+            lede="Take a breath — this takes under a minute. Tell us what is needed and BloodLink starts finding compatible donors the moment you post."
+          />
 
-          <View className="mt-10">
+          <View className="mt-10 glass rounded-2xl p-6 md:p-8">
             <RequestForm />
             <Text style={textStyles.caption} className="text-muted mt-4">
               Demo — simulated: this form does not contact real hospitals or donors.
@@ -77,7 +74,7 @@ export default function NewRequestScreen() {
               ))}
             </View>
           </Card>
-        </View>
+        </Container>
         <Footer />
       </ScrollView>
     </View>
