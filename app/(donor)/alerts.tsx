@@ -3,6 +3,8 @@ import { ScrollView, Text, View } from 'react-native';
 import { Header } from '../../components/layout/Header';
 import { Footer } from '../../components/layout/Footer';
 import { SEO } from '../../components/layout/SEO';
+import { Container } from '../../components/layout/Container';
+import { SectionHeader } from '../../components/layout/SectionHeader';
 import { Badge } from '../../components/ui/Badge';
 import { Button } from '../../components/ui/Button';
 import { Card } from '../../components/ui/Card';
@@ -77,19 +79,13 @@ export default function DonorAlertsScreen() {
         description="Urgent blood requests near you, matched to your blood group."
       />
       <Header />
-      <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
-        <View className="max-w-6xl w-full mx-auto px-4 md:px-8 py-12 md:py-20">
-          <Text style={textStyles.eyebrow} className="text-muted">
-            DONOR ALERTS
-          </Text>
-          <Text style={textStyles.display} className="text-ink mt-3">
-            Requests that need you
-          </Text>
-          <Text style={[textStyles.body, { color: '#44403C' }]} className="mt-4 max-w-xl">
-            These alerts matched your blood group and location. Accepting
-            tells the hospital you are on your way — declining simply passes
-            the alert to the next closest donor.
-          </Text>
+      <ScrollView className="flex-1 ambient-paper" showsVerticalScrollIndicator={false}>
+        <Container className="py-12 md:py-20">
+          <SectionHeader
+            eyebrow="DONOR ALERTS"
+            title="Requests that need you"
+            lede="These alerts matched your blood group and location. Accepting tells the hospital you are on your way — declining simply passes the alert to the next closest donor."
+          />
 
           <View className="mt-10 flex-col gap-4">
             {demoAlerts.map((alert) => {
@@ -109,7 +105,7 @@ export default function DonorAlertsScreen() {
                     </Text>
                   </View>
 
-                  <Text style={textStyles.h2} className="text-ink mt-4">
+                  <Text style={textStyles.h2} className="text-ink mt-4 text-balance">
                     {alert.units} unit{alert.units === 1 ? '' : 's'} needed · {alert.hospital}
                   </Text>
                   <Text style={textStyles.bodySmall} className="text-muted mt-1">
@@ -165,7 +161,7 @@ export default function DonorAlertsScreen() {
           <Text style={textStyles.caption} className="text-muted mt-8 text-center">
             Demo — fictional data · decisions stay on this device
           </Text>
-        </View>
+        </Container>
 
         <Footer />
       </ScrollView>
