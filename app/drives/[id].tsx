@@ -7,8 +7,8 @@ import { Alert, Badge, Button, Card, EmptyState, Progress } from '../../componen
 import { Footer } from '../../components/layout/Footer';
 import { Header } from '../../components/layout/Header';
 import { SEO } from '../../components/layout/SEO';
-
-const WRAPPER = 'max-w-6xl w-full mx-auto px-4 md:px-8 py-12 md:py-20';
+import { Container } from '../../components/layout/Container';
+import { SectionHeader } from '../../components/layout/SectionHeader';
 
 export default function DriveDetail() {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -19,8 +19,8 @@ export default function DriveDetail() {
     <View className="flex-1 bg-paper">
       <SEO title={drive ? drive.title : 'Drive not found'} description={drive?.description} />
       <Header />
-      <ScrollView className="flex-1">
-        <View className={WRAPPER}>
+      <ScrollView className="flex-1 ambient-paper">
+        <Container className="py-12 md:py-20">
           <Link href="/drives" asChild>
             <Text style={{ fontFamily: fonts.sansMedium, fontSize: 14, color: '#C8102E' }}>
               ← All drives
@@ -39,15 +39,11 @@ export default function DriveDetail() {
             </View>
           ) : (
             <View className="mt-6">
-              <Text style={textStyles.eyebrow} className="text-crimson">
-                DONATION DRIVE
-              </Text>
-              <Text style={textStyles.h1} className="text-ink mt-3">
-                {drive.title}
-              </Text>
-              <Text style={textStyles.bodySmall} className="text-muted mt-2">
-                Organized by {drive.organizer}
-              </Text>
+              <SectionHeader
+                eyebrow="DONATION DRIVE"
+                title={drive.title}
+                lede={`Organized by ${drive.organizer}`}
+              />
 
               <View className="mt-8 flex-col md:flex-row gap-6">
                 <View className="flex-1">
@@ -91,7 +87,7 @@ export default function DriveDetail() {
 
                 <View className="md:w-96 shrink-0">
                   <Card>
-                    <Text style={textStyles.h3} className="text-ink mb-4">
+                    <Text style={textStyles.h3} className="text-ink mb-4 text-balance">
                       Register your seat
                     </Text>
                     <View className="flex-row items-baseline justify-between mb-2">
@@ -124,7 +120,7 @@ export default function DriveDetail() {
               </View>
             </View>
           )}
-        </View>
+        </Container>
         <Footer />
       </ScrollView>
     </View>
