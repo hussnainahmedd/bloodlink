@@ -9,6 +9,7 @@ import {
 import { Header } from '../../components/layout/Header';
 import { Footer } from '../../components/layout/Footer';
 import { SEO } from '../../components/layout/SEO';
+import { Container } from '../../components/layout/Container';
 import { Alert } from '../../components/ui/Alert';
 import { Badge } from '../../components/ui/Badge';
 import { Button } from '../../components/ui/Button';
@@ -92,8 +93,8 @@ export default function DonorProfileScreen() {
         description="Manage your donor profile, contact details, and alert preferences."
       />
       <Header />
-      <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
-        <View className="max-w-6xl w-full mx-auto px-4 md:px-8 py-12 md:py-20">
+      <ScrollView className="flex-1 ambient-paper" showsVerticalScrollIndicator={false}>
+        <Container className="py-12 md:py-20">
           <Text style={textStyles.eyebrow} className="text-muted">
             DONOR PROFILE
           </Text>
@@ -106,7 +107,7 @@ export default function DonorProfileScreen() {
                 </Text>
               </View>
               <View className="flex-1">
-                <Text style={textStyles.h1} className="text-ink">
+                <Text style={textStyles.h1} className="text-ink text-balance">
                   {name}
                 </Text>
                 <Text style={textStyles.caption} className="text-muted mt-1">
@@ -118,7 +119,7 @@ export default function DonorProfileScreen() {
           </Card>
 
           <View className="mt-8">
-            <Text style={textStyles.h2} className="text-ink">
+            <Text style={textStyles.h2} className="text-ink text-balance">
               Contact details
             </Text>
             <Text style={textStyles.bodySmall} className="text-muted mt-2">
@@ -158,7 +159,7 @@ export default function DonorProfileScreen() {
           </View>
 
           <View className="mt-10">
-            <Text style={textStyles.h2} className="text-ink">
+            <Text style={textStyles.h2} className="text-ink text-balance">
               Notification preferences
             </Text>
             <Card padding="md" className="mt-5">
@@ -211,7 +212,7 @@ export default function DonorProfileScreen() {
           <Text style={textStyles.caption} className="text-muted mt-8 text-center">
             Demo — fictional data · nothing leaves this device
           </Text>
-        </View>
+        </Container>
 
         <Footer />
       </ScrollView>
