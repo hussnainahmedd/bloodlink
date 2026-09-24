@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Pressable, Text, View } from 'react-native';
 import { fonts } from '../../styles/theme';
 import { Button } from '../ui/Button';
+import { Container } from './Container';
 import { MobileNav } from './MobileNav';
 
 const links = [
@@ -27,16 +28,17 @@ function Logo() {
 }
 
 /**
- * Top navigation. Center links on web/wide screens, hamburger + overlay
- * menu on mobile. Hairline bottom border, flat paper surface.
+ * Top navigation — frosted glass, sticks to the top on scroll.
+ * Center links on web/wide screens, hamburger + overlay menu on mobile.
  */
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <>
-      <View className="bg-paper border-b border-hairline z-40">
-        <View className="flex-row items-center justify-between px-4 md:px-8 h-16 max-w-6xl w-full mx-auto">
+      <View className="site-header">
+        <Container>
+          <View className="flex-row items-center justify-between h-16">
           <Logo />
 
           {/* web nav */}
@@ -78,7 +80,8 @@ export function Header() {
               <View className="w-4 h-0.5 bg-ink" />
             </View>
           </Pressable>
-        </View>
+          </View>
+        </Container>
       </View>
 
       <MobileNav open={menuOpen} onClose={() => setMenuOpen(false)} />
