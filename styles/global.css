@@ -1,3 +1,97 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ============================================================
+   BloodLink web refinements — typography, glass, focus.
+   (Native ignores unknown CSS; these only affect the web build.)
+   ============================================================ */
+
+/* --- Typography: render type like print --- */
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: #c8102e;
+  color: #faf9f7;
+}
+
+/* Balanced headlines — no widowed words in display type */
+.text-balance {
+  text-wrap: balance;
+}
+
+/* --- Focus: kill the browser's default black outline on text fields.
+   Every input renders its own focus ring (via box-shadow) that follows
+   the field's border-radius, so the ring always hugs the border. --- */
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+}
+
+/* Visible, on-brand keyboard focus for buttons and links */
+a:focus-visible,
+button:focus-visible,
+[role='button']:focus-visible {
+  outline: 2px solid #c8102e;
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* --- Glassmorphism --- */
+.glass {
+  background: rgba(255, 255, 255, 0.62);
+  -webkit-backdrop-filter: blur(20px) saturate(1.5);
+  backdrop-filter: blur(20px) saturate(1.5);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  box-shadow:
+    0 1px 2px rgba(28, 25, 23, 0.04),
+    0 12px 32px -12px rgba(28, 25, 23, 0.12);
+}
+
+.glass-soft {
+  background: rgba(255, 255, 255, 0.45);
+  -webkit-backdrop-filter: blur(16px) saturate(1.35);
+  backdrop-filter: blur(16px) saturate(1.35);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.glass-dark {
+  background: rgba(58, 21, 27, 0.55);
+  -webkit-backdrop-filter: blur(20px) saturate(1.25);
+  backdrop-filter: blur(20px) saturate(1.25);
+  border: 1px solid rgba(250, 249, 247, 0.12);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.2),
+    0 16px 40px -16px rgba(0, 0, 0, 0.45);
+}
+
+/* Frosted site header */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: rgba(250, 249, 247, 0.78);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  backdrop-filter: blur(18px) saturate(1.4);
+  border-bottom: 1px solid rgba(231, 226, 220, 0.9);
+}
+
+/* Soft ambient wash behind glass surfaces on paper */
+.ambient-paper {
+  background:
+    radial-gradient(52rem 30rem at 12% -8%, rgba(200, 16, 46, 0.055), transparent 60%),
+    radial-gradient(44rem 26rem at 88% 8%, rgba(200, 16, 46, 0.04), transparent 60%),
+    #faf9f7;
+}
+
+.ambient-maroon {
+  background:
+    radial-gradient(56rem 32rem at 85% -10%, rgba(200, 16, 46, 0.16), transparent 62%),
+    radial-gradient(40rem 24rem at 8% 110%, rgba(200, 16, 46, 0.08), transparent 60%),
+    #22090d;
+}
