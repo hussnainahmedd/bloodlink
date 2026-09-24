@@ -3,11 +3,11 @@ import React from 'react';
 import { ScrollView, Text, View } from 'react-native';
 import { fonts, textStyles } from '../styles/theme';
 import { Button, Card } from '../components/ui';
+import { Container } from '../components/layout/Container';
 import { Footer } from '../components/layout/Footer';
 import { Header } from '../components/layout/Header';
 import { SEO } from '../components/layout/SEO';
-
-const WRAPPER = 'max-w-6xl w-full mx-auto px-4 md:px-8 py-12 md:py-20';
+import { SectionHeader } from '../components/layout/SectionHeader';
 
 const TECH = [
   { name: 'Expo + React Native', blurb: 'One codebase for Android, iOS, and web.' },
@@ -28,27 +28,20 @@ export default function About() {
     <View className="flex-1 bg-paper">
       <SEO title="About" description="BloodLink's mission, how AI matching works, and the technology behind it." />
       <Header />
-      <ScrollView className="flex-1">
-        <View className={WRAPPER}>
-          <Text style={textStyles.eyebrow} className="text-crimson">
-            ABOUT
-          </Text>
-          <Text style={textStyles.h1} className="text-ink mt-3">
-            Nobody should wait for blood
-            <Text style={{ color: '#C8102E' }}>.</Text>
-          </Text>
-          <Text style={textStyles.body} className="text-inkSoft mt-3 max-w-2xl">
-            BloodLink connects hospitals and families with nearby compatible donors in minutes —
-            matching by blood group, distance, and availability, then alerting the best matches
-            instantly.
-          </Text>
+      <ScrollView className="flex-1 ambient-paper" showsVerticalScrollIndicator={false}>
+        <Container className="py-12 md:py-20">
+          <SectionHeader
+            eyebrow="ABOUT"
+            title="Nobody should wait for blood."
+            lede="BloodLink connects hospitals and families with nearby compatible donors in minutes — matching by blood group, distance, and availability, then alerting the best matches instantly."
+          />
 
           <View className="mt-10 flex-col md:flex-row gap-6">
             <Card className="flex-1">
               <Text style={textStyles.eyebrow} className="text-muted mb-3">
                 OUR MISSION
               </Text>
-              <Text style={textStyles.h3} className="text-ink">
+              <Text style={textStyles.h3} className="text-ink text-balance">
                 Make finding a donor as fast as sending a message.
               </Text>
               <Text style={textStyles.bodySmall} className="text-inkSoft mt-3">
@@ -61,7 +54,7 @@ export default function About() {
               <Text style={textStyles.eyebrow} className="text-muted mb-3">
                 OUR VISION
               </Text>
-              <Text style={textStyles.h3} className="text-ink">
+              <Text style={textStyles.h3} className="text-ink text-balance">
                 A city where no surgery is delayed for lack of blood.
               </Text>
               <Text style={textStyles.bodySmall} className="text-inkSoft mt-3">
@@ -73,12 +66,10 @@ export default function About() {
           </View>
 
           <Card className="mt-8">
-            <Text style={textStyles.eyebrow} className="text-muted mb-3">
-              HOW THE AI MATCHING WORKS
-            </Text>
-            <Text style={textStyles.h2} className="text-ink">
-              Three signals, one score.
-            </Text>
+            <SectionHeader
+              eyebrow="HOW THE AI MATCHING WORKS"
+              title="Three signals, one score."
+            />
             <View className="mt-5 gap-4">
               {MATCH_STEPS.map((s) => (
                 <View key={s.n} className="flex-row gap-4">
@@ -99,7 +90,7 @@ export default function About() {
           </Card>
 
           <View className="mt-8">
-            <Text style={textStyles.h2} className="text-ink mb-5">
+            <Text style={textStyles.h2} className="text-ink mb-5 text-balance">
               Built on a $0 stack
             </Text>
             <View className="gap-4">
@@ -117,7 +108,7 @@ export default function About() {
           </View>
 
           <Card className="mt-10">
-            <Text style={textStyles.h3} className="text-ink">
+            <Text style={textStyles.h3} className="text-ink text-balance">
               Questions, partnerships, or press?
             </Text>
             <Text style={textStyles.bodySmall} className="text-inkSoft mt-2 mb-5">
@@ -127,7 +118,7 @@ export default function About() {
               <Button title="Get in touch" />
             </Link>
           </Card>
-        </View>
+        </Container>
         <Footer />
       </ScrollView>
     </View>
