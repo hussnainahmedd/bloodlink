@@ -2,11 +2,11 @@ import React, { useMemo, useState } from 'react';
 import { Pressable, ScrollView, Text, View } from 'react-native';
 import { fonts, textStyles } from '../styles/theme';
 import { Alert, Card, Input } from '../components/ui';
+import { Container } from '../components/layout/Container';
 import { Footer } from '../components/layout/Footer';
 import { Header } from '../components/layout/Header';
 import { SEO } from '../components/layout/SEO';
-
-const WRAPPER = 'max-w-6xl w-full mx-auto px-4 md:px-8 py-12 md:py-20';
+import { SectionHeader } from '../components/layout/SectionHeader';
 
 interface CheckItem {
   key: 'illness' | 'tattoo' | 'meds';
@@ -38,7 +38,7 @@ function CheckRow({ checked, label, onToggle }: { checked: boolean; label: strin
       accessibilityRole="checkbox"
       accessibilityState={{ checked }}
       onPress={onToggle}
-      className="flex-row items-start gap-3 border border-hairline rounded-md px-4 py-3 bg-white"
+      className="flex-row items-start gap-3 glass rounded-xl px-4 py-3"
     >
       <View
         className={`w-5 h-5 rounded-md border items-center justify-center mt-0.5 ${
@@ -101,23 +101,18 @@ export default function Eligibility() {
     <View className="flex-1 bg-paper">
       <SEO title="Eligibility check" description="A quick self-check for blood donation eligibility — age, weight, hemoglobin, and timing." />
       <Header />
-      <ScrollView className="flex-1">
-        <View className={WRAPPER}>
-          <Text style={textStyles.eyebrow} className="text-crimson">
-            ELIGIBILITY CHECK
-          </Text>
-          <Text style={textStyles.h1} className="text-ink mt-3">
-            Can you donate today?
-          </Text>
-          <Text style={textStyles.body} className="text-inkSoft mt-3 max-w-2xl">
-            Answer a few questions and get an instant read. This is a screening guide — the
-            on-site health check always has the final word.
-          </Text>
+      <ScrollView className="flex-1 ambient-paper" showsVerticalScrollIndicator={false}>
+        <Container className="py-12 md:py-20">
+          <SectionHeader
+            eyebrow="ELIGIBILITY CHECK"
+            title="Can you donate today?"
+            lede="Answer a few questions and get an instant read. This is a screening guide — the on-site health check always has the final word."
+          />
 
           <View className="mt-8 flex-col md:flex-row gap-8">
             <View className="flex-1 gap-5">
               <Card>
-                <Text style={textStyles.h3} className="text-ink mb-5">
+                <Text style={textStyles.h3} className="text-ink mb-5 text-balance">
                   Your details
                 </Text>
                 <View className="gap-4">
@@ -141,7 +136,7 @@ export default function Eligibility() {
               </Card>
 
               <Card>
-                <Text style={textStyles.h3} className="text-ink mb-2">
+                <Text style={textStyles.h3} className="text-ink mb-2 text-balance">
                   Quick health questions
                 </Text>
                 <Text style={textStyles.bodySmall} className="text-muted mb-4">
@@ -157,7 +152,7 @@ export default function Eligibility() {
 
             <View className="md:w-96 shrink-0">
               <Card>
-                <Text style={textStyles.h3} className="text-ink mb-4">
+                <Text style={textStyles.h3} className="text-ink mb-4 text-balance">
                   Your result
                 </Text>
                 {result.eligible ? (
@@ -200,7 +195,7 @@ export default function Eligibility() {
               </Card>
             </View>
           </View>
-        </View>
+        </Container>
         <Footer />
       </ScrollView>
     </View>
