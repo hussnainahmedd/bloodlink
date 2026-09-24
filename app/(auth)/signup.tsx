@@ -4,6 +4,7 @@ import { Pressable, ScrollView, Text, View } from 'react-native';
 import { fonts, textStyles } from '../../styles/theme';
 import { BLOOD_GROUPS, type BloodGroup } from '../../lib/demo';
 import { Alert, Button, Card, Input } from '../../components/ui';
+import { Container } from '../../components/layout/Container';
 import { Footer } from '../../components/layout/Footer';
 import { Header } from '../../components/layout/Header';
 import { SEO } from '../../components/layout/SEO';
@@ -28,10 +29,10 @@ export default function Signup() {
     <View className="flex-1 bg-paper">
       <SEO title="Create account" description="Join BloodLink as a donor or a hospital." />
       <Header />
-      <ScrollView className="flex-1">
-        <View className="max-w-md w-full mx-auto px-4 md:px-8 py-12 md:py-20">
+      <ScrollView className="flex-1 ambient-paper">
+        <Container narrow className="py-12 md:py-20">
           <Card padding="lg">
-            <Text style={textStyles.h1} className="text-ink">
+            <Text style={textStyles.h1} className="text-ink text-balance">
               Create your account
             </Text>
             <Text style={textStyles.bodySmall} className="text-muted mt-2">
@@ -50,7 +51,7 @@ export default function Signup() {
                     accessibilityRole="radio"
                     accessibilityState={{ checked: active }}
                     onPress={() => setRole(r.key)}
-                    className={`flex-1 border rounded-md p-4 ${active ? 'border-crimson bg-crimsonSoft' : 'border-hairline bg-white'}`}
+                    className={`flex-1 border rounded-md p-4 ${active ? 'border-crimson bg-crimsonSoft' : 'border-hairline glass'}`}
                   >
                     <Text style={{ fontFamily: fonts.sansSemiBold, fontSize: 15, color: active ? '#C8102E' : '#1C1917' }}>
                       {r.title}
@@ -80,7 +81,7 @@ export default function Signup() {
                         accessibilityRole="radio"
                         accessibilityState={{ checked: group === g }}
                         onPress={() => setGroup(g)}
-                        className={`rounded-md px-3 py-2 border ${group === g ? 'bg-crimson border-crimson' : 'bg-white border-hairline'}`}
+                        className={`rounded-md px-3 py-2 border ${group === g ? 'bg-crimson border-crimson' : 'glass border-hairline'}`}
                       >
                         <Text style={{ fontFamily: fonts.monoSemiBold, fontSize: 13, color: group === g ? '#FFFFFF' : '#1C1917' }}>
                           {g}
@@ -104,7 +105,7 @@ export default function Signup() {
           <View className="mt-6">
             <Alert tone="info" message="Demo only — no real account is created." />
           </View>
-        </View>
+        </Container>
         <Footer />
       </ScrollView>
     </View>
