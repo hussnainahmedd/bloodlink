@@ -4,6 +4,8 @@ import { Pressable, ScrollView, Text, View } from 'react-native';
 import { Header } from '../../components/layout/Header';
 import { Footer } from '../../components/layout/Footer';
 import { SEO } from '../../components/layout/SEO';
+import { Container } from '../../components/layout/Container';
+import { SectionHeader } from '../../components/layout/SectionHeader';
 import { StatCard, StatRow } from '../../components/dashboard/StatCard';
 import { DonationChart } from '../../components/dashboard/DonationChart';
 import { Alert } from '../../components/ui/Alert';
@@ -29,18 +31,13 @@ export default function DonorDashboardScreen() {
         description="Your donations, alerts near you, and impact at a glance."
       />
       <Header />
-      <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
-        <View className="max-w-6xl w-full mx-auto px-4 md:px-8 py-12 md:py-20">
-          <Text style={textStyles.eyebrow} className="text-muted">
-            DONOR DASHBOARD
-          </Text>
-          <Text style={textStyles.display} className="text-ink mt-3">
-            Good evening, Ayesha
-          </Text>
-          <Text style={[textStyles.body, { color: '#44403C' }]} className="mt-4 max-w-xl">
-            Here is your donation story so far — and the patients closest to
-            you who could use your blood type right now.
-          </Text>
+      <ScrollView className="flex-1 ambient-paper" showsVerticalScrollIndicator={false}>
+        <Container className="py-12 md:py-20">
+          <SectionHeader
+            eyebrow="DONOR DASHBOARD"
+            title="Good evening, Ayesha"
+            lede="Here is your donation story so far — and the patients closest to you who could use your blood type right now."
+          />
 
           <View className="mt-10">
             <StatRow>
@@ -54,7 +51,7 @@ export default function DonorDashboardScreen() {
           <View className="mt-8">
             <Card padding="lg">
               <View className="flex-row items-center justify-between mb-4">
-                <Text style={textStyles.h2} className="text-ink">
+                <Text style={textStyles.h2} className="text-ink text-balance">
                   Your year in donations
                 </Text>
                 <Badge tone="muted">2026</Badge>
@@ -65,7 +62,7 @@ export default function DonorDashboardScreen() {
 
           <View className="mt-12">
             <View className="flex-row items-center justify-between">
-              <Text style={textStyles.h1} className="text-ink">
+              <Text style={textStyles.h1} className="text-ink text-balance">
                 Alerts near you
               </Text>
               <Link href="/find-donors" asChild>
@@ -128,12 +125,7 @@ export default function DonorDashboardScreen() {
           </View>
 
           <View className="mt-12">
-            <Text style={textStyles.eyebrow} className="text-muted">
-              BADGES
-            </Text>
-            <Text style={textStyles.h2} className="text-ink mt-3">
-              Milestones you have unlocked
-            </Text>
+            <SectionHeader eyebrow="BADGES" title="Milestones you have unlocked" />
             <View className="flex-row flex-wrap gap-2 mt-5">
               <Badge tone="leaf">First donation</Badge>
               <Badge tone="ink">5 donations</Badge>
@@ -150,7 +142,7 @@ export default function DonorDashboardScreen() {
           <Text style={textStyles.caption} className="text-muted mt-10 text-center">
             Demo — fictional data
           </Text>
-        </View>
+        </Container>
 
         <Footer />
       </ScrollView>
