@@ -7,8 +7,8 @@ import { Badge, Card } from '../../components/ui';
 import { Footer } from '../../components/layout/Footer';
 import { Header } from '../../components/layout/Header';
 import { SEO } from '../../components/layout/SEO';
-
-const WRAPPER = 'max-w-6xl w-full mx-auto px-4 md:px-8 py-12 md:py-20';
+import { Container } from '../../components/layout/Container';
+import { SectionHeader } from '../../components/layout/SectionHeader';
 
 function StoryCard({ story }: { story: Story }) {
   return (
@@ -21,7 +21,7 @@ function StoryCard({ story }: { story: Story }) {
               {story.date}
             </Text>
           </View>
-          <Text style={textStyles.h3} className="text-ink">
+          <Text style={textStyles.h3} className="text-ink text-balance">
             {story.title}
           </Text>
           <Text style={textStyles.bodySmall} className="text-inkSoft mt-2">
@@ -41,24 +41,19 @@ export default function Stories() {
     <View className="flex-1 bg-paper">
       <SEO title="Donor stories" description="Real-feeling stories from donors and recipient families." />
       <Header />
-      <ScrollView className="flex-1">
-        <View className={WRAPPER}>
-          <Text style={textStyles.eyebrow} className="text-crimson">
-            STORIES
-          </Text>
-          <Text style={textStyles.h1} className="text-ink mt-3">
-            Twelve minutes that mattered
-          </Text>
-          <Text style={textStyles.body} className="text-inkSoft mt-3 max-w-2xl">
-            Donors, recipients, and the families in between — short accounts of what one
-            donation can do. Names are fictional; the shape of these stories is very real.
-          </Text>
+      <ScrollView className="flex-1 ambient-paper">
+        <Container className="py-12 md:py-20">
+          <SectionHeader
+            eyebrow="STORIES"
+            title="Twelve minutes that mattered"
+            lede="Donors, recipients, and the families in between — short accounts of what one donation can do. Names are fictional; the shape of these stories is very real."
+          />
           <View className="mt-8 gap-5">
             {stories.map((s) => (
               <StoryCard key={s.id} story={s} />
             ))}
           </View>
-        </View>
+        </Container>
         <Footer />
       </ScrollView>
     </View>
