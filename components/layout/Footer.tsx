@@ -2,6 +2,7 @@ import { Link } from 'expo-router';
 import React from 'react';
 import { Pressable, Text, View } from 'react-native';
 import { fonts, textStyles } from '../../styles/theme';
+import { Container } from './Container';
 
 const columns = [
   {
@@ -34,13 +35,13 @@ const columns = [
 ] as const;
 
 /**
- * Deep-maroon footer. Editorial columns, hairline separators, and an
- * honest demo disclaimer at the bottom.
+ * Deep-maroon footer with an ambient crimson wash. Editorial columns,
+ * hairline separators, and an honest demo disclaimer at the bottom.
  */
 export function Footer() {
   return (
-    <View className="bg-maroon">
-      <View className="max-w-6xl w-full mx-auto px-4 md:px-8 py-16">
+    <View className="ambient-maroon">
+      <Container className="py-16 md:py-20">
         <View className="flex-col md:flex-row md:justify-between gap-10">
           <View className="max-w-xs">
             <View className="flex-row items-center mb-4">
@@ -81,7 +82,7 @@ export function Footer() {
             Built with React Native + Expo + Firebase · $0 budget
           </Text>
         </View>
-      </View>
+      </Container>
     </View>
   );
 }
