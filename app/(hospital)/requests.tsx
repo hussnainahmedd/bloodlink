@@ -4,6 +4,8 @@ import { Pressable, ScrollView, Text, View } from 'react-native';
 import { Header } from '../../components/layout/Header';
 import { Footer } from '../../components/layout/Footer';
 import { SEO } from '../../components/layout/SEO';
+import { Container } from '../../components/layout/Container';
+import { SectionHeader } from '../../components/layout/SectionHeader';
 import { Badge } from '../../components/ui/Badge';
 import { Card } from '../../components/ui/Card';
 import {
@@ -53,7 +55,7 @@ function RequestRow({ request }: { request: BloodRequest }) {
           </View>
           <View className="flex-row items-center justify-between mt-4">
             <View className="flex-1 mr-4">
-              <Text style={textStyles.h3} className="text-ink">
+              <Text style={textStyles.h3} className="text-ink text-balance">
                 {request.patientCode} — {request.units} unit{request.units === 1 ? '' : 's'}
               </Text>
               <Text style={textStyles.caption} className="text-muted mt-1">
@@ -84,19 +86,13 @@ export default function HospitalRequestsScreen() {
         description="Active and past blood requests for Demo General Hospital."
       />
       <Header />
-      <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
-        <View className="max-w-6xl w-full mx-auto px-4 md:px-8 py-12 md:py-20">
-          <Text style={textStyles.eyebrow} className="text-muted">
-            REQUEST LEDGER
-          </Text>
-          <Text style={textStyles.display} className="text-ink mt-3">
-            Blood requests
-          </Text>
-          <Text style={[textStyles.body, { color: '#44403C' }]} className="mt-4 max-w-xl">
-            Everything this hospital has asked for — the live request at the
-            top, fulfilled ones in the archive. Tap any row for the full
-            timeline and matched donors.
-          </Text>
+      <ScrollView className="flex-1 ambient-paper" showsVerticalScrollIndicator={false}>
+        <Container className="py-12 md:py-20">
+          <SectionHeader
+            eyebrow="REQUEST LEDGER"
+            title="Blood requests"
+            lede="Everything this hospital has asked for — the live request at the top, fulfilled ones in the archive. Tap any row for the full timeline and matched donors."
+          />
 
           <View className="mt-10">
             <Text style={textStyles.eyebrow} className="text-muted mb-4">
@@ -121,7 +117,7 @@ export default function HospitalRequestsScreen() {
           <Text style={textStyles.caption} className="text-muted mt-10 text-center">
             Demo — fictional data
           </Text>
-        </View>
+        </Container>
 
         <Footer />
       </ScrollView>
