@@ -5,6 +5,7 @@ import type { Donor } from '../../lib/demo';
 import { textStyles } from '../../styles/theme';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
 import { DonorCard } from '../donors/DonorCard';
+import { SectionHeader } from '../layout/SectionHeader';
 import { Card } from '../ui/Card';
 
 export interface MatchResultsProps {
@@ -35,13 +36,11 @@ export function MatchResults({ donors }: MatchResultsProps) {
   if (!revealed) {
     return (
       <Card padding="lg">
-        <Text style={textStyles.eyebrow} className="text-crimson">AI MATCHING</Text>
-        <Text style={textStyles.h2} className="text-ink mt-3">
-          Scanning nearby donors…
-        </Text>
-        <Text style={textStyles.bodySmall} className="text-inkSoft mt-2">
-          Scoring on blood compatibility × distance × availability.
-        </Text>
+        <SectionHeader
+          eyebrow="AI MATCHING"
+          title="Scanning nearby donors…"
+          lede="Scoring on blood compatibility × distance × availability."
+        />
         <View className="h-1.5 bg-paperDeep rounded-full mt-6 overflow-hidden">
           <Animated.View style={bar} className="h-full bg-crimson rounded-full" />
         </View>
@@ -55,7 +54,7 @@ export function MatchResults({ donors }: MatchResultsProps) {
   return (
     <View className="gap-4">
       <View className="flex-row items-center justify-between">
-        <Text style={textStyles.h2} className="text-ink">Matched donors</Text>
+        <Text style={textStyles.h2} className="text-ink text-balance">Matched donors</Text>
         <Text style={textStyles.caption} className="text-muted">{donors.length} found</Text>
       </View>
       {donors.map((d) => (
