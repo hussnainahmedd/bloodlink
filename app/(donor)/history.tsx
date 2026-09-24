@@ -3,6 +3,8 @@ import { ScrollView, Text, View } from 'react-native';
 import { Header } from '../../components/layout/Header';
 import { Footer } from '../../components/layout/Footer';
 import { SEO } from '../../components/layout/SEO';
+import { Container } from '../../components/layout/Container';
+import { SectionHeader } from '../../components/layout/SectionHeader';
 import { Badge } from '../../components/ui/Badge';
 import { Card } from '../../components/ui/Card';
 import { EmptyState } from '../../components/ui/EmptyState';
@@ -36,19 +38,13 @@ export default function DonorHistoryScreen() {
         description="Every donation you have made — dates, locations, and blood group."
       />
       <Header />
-      <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
-        <View className="max-w-6xl w-full mx-auto px-4 md:px-8 py-12 md:py-20">
-          <Text style={textStyles.eyebrow} className="text-muted">
-            YOUR RECORD
-          </Text>
-          <Text style={textStyles.display} className="text-ink mt-3">
-            Donation history
-          </Text>
-          <Text style={[textStyles.body, { color: '#44403C' }]} className="mt-4 max-w-xl">
-            A permanent record of every donation — useful for your own
-            tracking and for hospitals that ask for donation history before
-            a drive.
-          </Text>
+      <ScrollView className="flex-1 ambient-paper" showsVerticalScrollIndicator={false}>
+        <Container className="py-12 md:py-20">
+          <SectionHeader
+            eyebrow="YOUR RECORD"
+            title="Donation history"
+            lede="A permanent record of every donation — useful for your own tracking and for hospitals that ask for donation history before a drive."
+          />
 
           <View className="mt-10">
             {history.length === 0 ? (
@@ -92,7 +88,7 @@ export default function DonorHistoryScreen() {
           <Text style={textStyles.caption} className="text-muted mt-8 text-center">
             Demo — fictional data
           </Text>
-        </View>
+        </Container>
 
         <Footer />
       </ScrollView>
