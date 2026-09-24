@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
+import { Container } from '../components/layout/Container';
 import { Footer } from '../components/layout/Footer';
 import { Header } from '../components/layout/Header';
 import { SEO } from '../components/layout/SEO';
+import { SectionHeader } from '../components/layout/SectionHeader';
 import { DonorCard } from '../components/donors/DonorCard';
 import {
   DonorFilters,
@@ -42,25 +44,18 @@ export default function FindDonorsScreen() {
         description="Search the BloodLink donor network by name, city, blood group, and distance."
       />
       <Header />
-      <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
-        <View className="max-w-6xl w-full mx-auto px-4 md:px-8 py-12 md:py-20">
-          <Text style={textStyles.eyebrow} className="text-muted">
-            DONOR NETWORK
-          </Text>
-          <Text style={textStyles.display} className="text-ink mt-3">
-            Find donors near you
-          </Text>
-          <Text style={[textStyles.body, { color: '#44403C' }]} className="mt-4 max-w-xl">
-            Search the registry by name or city, narrow it down by blood group
-            and distance, and toggle to see only donors who are available
-            right now. Every match shows last donation and total donations —
-            so you can see the track record, not just the blood type.
-          </Text>
-        </View>
+      <ScrollView className="flex-1 ambient-paper" showsVerticalScrollIndicator={false}>
+        <Container className="pt-12 md:pt-20">
+          <SectionHeader
+            eyebrow="DONOR NETWORK"
+            title="Find donors near you."
+            lede="Search the registry by name or city, narrow it down by blood group and distance, and toggle to see only donors who are available right now. Every match shows last donation and total donations — so you can see the track record, not just the blood type."
+          />
+        </Container>
 
         <DonorFilters filters={filters} onChange={setFilters} resultCount={results.length} />
 
-        <View className="max-w-6xl w-full mx-auto px-4 md:px-8 py-10">
+        <Container className="py-10">
           {results.length === 0 ? (
             <EmptyState
               mark="0"
@@ -79,7 +74,7 @@ export default function FindDonorsScreen() {
           <Text style={textStyles.caption} className="text-muted mt-8 text-center">
             Demo — fictional data
           </Text>
-        </View>
+        </Container>
 
         <Footer />
       </ScrollView>
