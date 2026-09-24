@@ -33,7 +33,7 @@ export function Input({
   ...rest
 }: InputProps) {
   const [focused, setFocused] = useState(false);
-  const borderColor = error ? colors.crimson : focused ? colors.ink : colors.hairline;
+  const borderColor = error ? colors.crimson : focused ? colors.crimson : colors.hairline;
 
   return (
     <View className="w-full">
@@ -44,7 +44,15 @@ export function Input({
       ) : null}
       <View
         className="flex-row items-center bg-white rounded-md px-4"
-        style={{ borderWidth: 1, borderColor, opacity: editable ? 1 : 0.6 }}
+        style={{
+          borderWidth: 1,
+          borderColor,
+          opacity: editable ? 1 : 0.6,
+          // Focus ring drawn on the wrapper (not the browser default outline),
+          // so it always hugs the field's own border-radius.
+          boxShadow:
+            focused && !error ? '0 0 0 4px rgba(200, 16, 46, 0.12)' : undefined,
+        }}
       >
         {leftIcon ? <View className="mr-3">{leftIcon}</View> : null}
         <TextInput
