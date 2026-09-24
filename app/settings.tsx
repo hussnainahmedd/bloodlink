@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { Pressable, ScrollView, Switch, Text, View } from 'react-native';
 import { colors, fonts, textStyles } from '../styles/theme';
 import { Alert, Card } from '../components/ui';
+import { Container } from '../components/layout/Container';
 import { Footer } from '../components/layout/Footer';
 import { Header } from '../components/layout/Header';
 import { SEO } from '../components/layout/SEO';
-
-const WRAPPER = 'max-w-6xl w-full mx-auto px-4 md:px-8 py-12 md:py-20';
+import { SectionHeader } from '../components/layout/SectionHeader';
 
 function ToggleRow({
   label,
@@ -58,17 +58,13 @@ export default function Settings() {
     <View className="flex-1 bg-paper">
       <SEO title="Settings" description="Manage notifications, language, and your account." />
       <Header />
-      <ScrollView className="flex-1">
-        <View className={WRAPPER}>
-          <Text style={textStyles.eyebrow} className="text-crimson">
-            SETTINGS
-          </Text>
-          <Text style={textStyles.h1} className="text-ink mt-3">
-            Your preferences
-          </Text>
-          <Text style={textStyles.body} className="text-inkSoft mt-3 max-w-2xl">
-            Everything here is local for the demo — flip a toggle and it sticks for this session.
-          </Text>
+      <ScrollView className="flex-1 ambient-paper" showsVerticalScrollIndicator={false}>
+        <Container className="py-12 md:py-20">
+          <SectionHeader
+            eyebrow="SETTINGS"
+            title="Your preferences"
+            lede="Everything here is local for the demo — flip a toggle and it sticks for this session."
+          />
 
           <View className="mt-8 gap-6 max-w-3xl">
             <Card>
@@ -108,7 +104,7 @@ export default function Settings() {
                       accessibilityRole="radio"
                       accessibilityState={{ checked: active }}
                       onPress={() => setLang(l.key)}
-                      className={`flex-1 border rounded-md p-4 ${active ? 'border-crimson bg-crimsonSoft' : 'border-hairline bg-white'}`}
+                      className={`flex-1 border p-4 ${active ? 'border-crimson bg-crimsonSoft rounded-md' : 'glass rounded-xl'}`}
                     >
                       <Text style={{ fontFamily: fonts.sansSemiBold, fontSize: 15, color: active ? '#C8102E' : '#1C1917' }}>
                         {l.label}
@@ -168,7 +164,7 @@ export default function Settings() {
               </Text>
             </Card>
           </View>
-        </View>
+        </Container>
         <Footer />
       </ScrollView>
     </View>
