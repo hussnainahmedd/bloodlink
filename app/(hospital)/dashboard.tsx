@@ -4,6 +4,8 @@ import { Pressable, ScrollView, Text, View } from 'react-native';
 import { Header } from '../../components/layout/Header';
 import { Footer } from '../../components/layout/Footer';
 import { SEO } from '../../components/layout/SEO';
+import { Container } from '../../components/layout/Container';
+import { SectionHeader } from '../../components/layout/SectionHeader';
 import { StatCard, StatRow } from '../../components/dashboard/StatCard';
 import { ForecastChart } from '../../components/dashboard/ForecastChart';
 import { Badge } from '../../components/ui/Badge';
@@ -51,18 +53,13 @@ export default function HospitalDashboardScreen() {
         description="Active requests, demand forecasts, and response performance for Demo General Hospital."
       />
       <Header />
-      <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
-        <View className="max-w-6xl w-full mx-auto px-4 md:px-8 py-12 md:py-20">
-          <Text style={textStyles.eyebrow} className="text-muted">
-            HOSPITAL DASHBOARD
-          </Text>
-          <Text style={textStyles.display} className="text-ink mt-3">
-            Demo General Hospital
-          </Text>
-          <Text style={[textStyles.body, { color: '#44403C' }]} className="mt-4 max-w-xl">
-            Live requests, who is being alerted, and what the next thirty
-            days of demand look like — one screen, updated as donors respond.
-          </Text>
+      <ScrollView className="flex-1 ambient-paper" showsVerticalScrollIndicator={false}>
+        <Container className="py-12 md:py-20">
+          <SectionHeader
+            eyebrow="HOSPITAL DASHBOARD"
+            title="Demo General Hospital"
+            lede="Live requests, who is being alerted, and what the next thirty days of demand look like — one screen, updated as donors respond."
+          />
 
           <View className="mt-10">
             <StatRow>
@@ -76,7 +73,7 @@ export default function HospitalDashboardScreen() {
           <View className="mt-8">
             <Card padding="lg">
               <View className="flex-row items-center justify-between mb-2">
-                <Text style={textStyles.h2} className="text-ink">
+                <Text style={textStyles.h2} className="text-ink text-balance">
                   30-day demand forecast
                 </Text>
                 <Link href="/forecasts" asChild>
@@ -95,7 +92,7 @@ export default function HospitalDashboardScreen() {
           </View>
 
           <View className="mt-12">
-            <Text style={textStyles.h1} className="text-ink">
+            <Text style={textStyles.h1} className="text-ink text-balance">
               Active request
             </Text>
             <Text style={textStyles.bodySmall} className="text-muted mt-2">
@@ -123,7 +120,7 @@ export default function HospitalDashboardScreen() {
                         {activeRequest.postedAgo}
                       </Text>
                     </View>
-                    <Text style={textStyles.h2} className="text-ink mt-4">
+                    <Text style={textStyles.h2} className="text-ink mt-4 text-balance">
                       {activeRequest.patientCode} — {activeRequest.units} units
                     </Text>
                     <Text style={textStyles.bodySmall} className="text-muted mt-1">
@@ -147,7 +144,7 @@ export default function HospitalDashboardScreen() {
           <Text style={textStyles.caption} className="text-muted mt-10 text-center">
             Demo — fictional data
           </Text>
-        </View>
+        </Container>
 
         <Footer />
       </ScrollView>
