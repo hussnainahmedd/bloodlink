@@ -2,11 +2,11 @@ import React from 'react';
 import { ScrollView, Text, View } from 'react-native';
 import { fonts, textStyles } from '../styles/theme';
 import { Alert, Badge, Card } from '../components/ui';
+import { Container } from '../components/layout/Container';
 import { Footer } from '../components/layout/Footer';
 import { Header } from '../components/layout/Header';
 import { SEO } from '../components/layout/SEO';
-
-const WRAPPER = 'max-w-6xl w-full mx-auto px-4 md:px-8 py-12 md:py-20';
+import { SectionHeader } from '../components/layout/SectionHeader';
 
 interface Step {
   n: string;
@@ -51,19 +51,13 @@ export default function HowItWorks() {
     <View className="flex-1 bg-paper">
       <SEO title="How it works" description="The four-step BloodLink flow: request, AI match, alert, donate — and the scoring formula behind it." />
       <Header />
-      <ScrollView className="flex-1">
-        <View className={WRAPPER}>
-          <Text style={textStyles.eyebrow} className="text-crimson">
-            HOW IT WORKS
-          </Text>
-          <Text style={textStyles.h1} className="text-ink mt-3">
-            Four steps. Zero guesswork.
-          </Text>
-          <Text style={textStyles.body} className="text-inkSoft mt-3 max-w-2xl">
-            From a family posting a request in a hospital corridor to a donor walking out with a
-            bandage and a juice box — this is exactly what happens, and what happens behind the
-            scenes.
-          </Text>
+      <ScrollView className="flex-1 ambient-paper" showsVerticalScrollIndicator={false}>
+        <Container className="py-12 md:py-20">
+          <SectionHeader
+            eyebrow="HOW IT WORKS"
+            title="Four steps. Zero guesswork."
+            lede="From a family posting a request in a hospital corridor to a donor walking out with a bandage and a juice box — this is exactly what happens, and what happens behind the scenes."
+          />
 
           <View className="mt-10 gap-6">
             {STEPS.map((s) => (
@@ -73,7 +67,7 @@ export default function HowItWorks() {
                     <Text style={{ fontFamily: fonts.monoSemiBold, fontSize: 13, color: '#78716C' }}>
                       {s.n}
                     </Text>
-                    <Text style={textStyles.h2} className="text-ink mt-2">
+                    <Text style={textStyles.h2} className="text-ink mt-2 text-balance">
                       {s.title}
                     </Text>
                   </View>
@@ -89,7 +83,7 @@ export default function HowItWorks() {
                         {s.see}
                       </Text>
                     </View>
-                    <View className="border border-hairline rounded-md p-4 bg-white">
+                    <View className="glass rounded-xl p-4">
                       <Text style={textStyles.eyebrow} className="text-muted mb-2">
                         WHAT HAPPENS BEHIND THE SCENES
                       </Text>
@@ -105,7 +99,7 @@ export default function HowItWorks() {
 
           <Card className="mt-8">
             <Badge tone="ink">The scoring formula</Badge>
-            <Text style={textStyles.h3} className="text-ink mt-4">
+            <Text style={textStyles.h3} className="text-ink mt-4 text-balance">
               Compatibility × Proximity × Availability
             </Text>
             <Text style={textStyles.bodySmall} className="text-inkSoft mt-3">
@@ -141,7 +135,7 @@ export default function HowItWorks() {
               message="The Request and Find donors screens use fictional demo data so you can see this flow end to end. Nothing here sends a real alert."
             />
           </View>
-        </View>
+        </Container>
         <Footer />
       </ScrollView>
     </View>
