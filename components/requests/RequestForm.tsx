@@ -94,7 +94,7 @@ export function RequestForm() {
               accessibilityRole="radio"
               accessibilityState={{ selected: urgency === u.key }}
               onPress={() => setUrgency(u.key)}
-              className={`rounded-lg border p-4 flex-row items-center ${urgency === u.key ? 'border-crimson bg-crimsonSoft' : 'border-hairline bg-white'}`}
+              className={`glass rounded-xl p-4 flex-row items-center ${urgency === u.key ? 'border border-crimson bg-crimsonSoft' : ''}`}
             >
               <View className={`w-4 h-4 rounded-full border-2 mr-3 ${urgency === u.key ? 'border-crimson bg-crimson' : 'border-hairline'}`} />
               <View>
