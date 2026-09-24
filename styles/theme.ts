@@ -3,8 +3,9 @@
  *
  * Rules this file enforces:
  * - One accent (crimson), used sparingly: CTAs + urgency only.
- * - Flat surfaces + 1px hairline borders. No shadows-as-design, no gradients, no glow.
- * - Small radii (6–8px). Type scale is fixed — nothing in between.
+ * - Frosted-glass surfaces over a soft ambient wash (see styles/global.css
+ *   `.glass` / `.ambient-paper`); hairline-bright edges, restrained blur.
+ * - Radii 6–16px by elevation. Type scale is fixed — nothing in between.
  * - Letter-spacing is stored in *pixels* (React Native unit), precomputed per size.
  */
 
