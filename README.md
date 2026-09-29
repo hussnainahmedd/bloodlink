@@ -1,76 +1,144 @@
-# 🩸 BloodLink — AI-Driven Emergency Blood Donor Matching
+<div align="center">
 
-> **Showcase project by Hussnain Ahmad** — turning a student's idea into a fully functional product.
+# 🩸 BloodLink
 
-![Status](https://img.shields.io/badge/status-in%20active%20development-blue)
-![Platform](https://img.shields.io/badge/platform-Android%20%7C%20iOS%20%7C%20Web-purple)
-![License](https://img.shields.io/badge/license-MIT-green)
+### *Blood, when seconds matter.*
 
----
+![assets/hero.webp](assets/hero.webp)
 
-## The Idea
+![Expo](https://img.shields.io/badge/Expo-SDK%2057-000020?style=flat&logo=expo&logoColor=white)
+![React Native](https://img.shields.io/badge/React%20Native-0.86-61DAFB?style=flat&logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)
+![Expo Router](https://img.shields.io/badge/Expo%20Router-file--based-E53935?style=flat)
+![NativeWind](https://img.shields.io/badge/NativeWind-38BDF8?style=flat&logo=tailwindcss&logoColor=white)
+![Firebase](https://img.shields.io/badge/Firebase-backend%20planned-FFCA28?style=flat&logo=firebase&logoColor=black)
 
-In emergencies, finding a blood donor in Pakistan still runs on phone calls, WhatsApp forwards, and luck. **BloodLink** finds the right donors within minutes — an AI matching engine scores nearby donors by blood compatibility, distance, and availability, then alerts them instantly.
+**An AI-powered emergency blood donor network for Pakistan** — connecting blood donors with patients in need, within minutes.
 
-**One-line pitch:** *BloodLink is an AI-powered system that finds blood donors for emergency patients in Pakistan within minutes, by alerting the right donors on WhatsApp.*
-
----
-
-## Platforms
-
-One codebase, three apps — **React Native + Expo**:
-
-| Platform | Target |
-|----------|--------|
-| 🤖 Android | Native app (Play Store) |
-| 🍎 iOS | Native app (App Store) |
-| 🌐 Web | Responsive web app |
-
-## Tech Stack
-
-- **Mobile + Web:** React Native (TypeScript) with Expo — single codebase for Android, iOS, and web
-- **Backend:** Firebase — Authentication, Firestore (realtime database), Cloud Messaging (push alerts)
-- **AI Matching Engine:** Python service — donor scoring (blood compatibility × proximity × availability), demand forecasting, fake-request detection
-- **Alerts:** Push notifications + WhatsApp Business API
-
-## Key Features
-
-1. **Donor registration** — blood group, location, availability schedule, donation history
-2. **Emergency requests** — hospital or patient posts a request with blood group, units needed, and location
-3. **AI donor matching** — every request is scored against donors:
-   - Blood compatibility (e.g. an O+ request matches O+ and O− donors)
-   - Distance / proximity
-   - Donor availability and recency of last donation
-4. **Instant alerts** — top-matched donors get push + WhatsApp alerts within seconds
-5. **Demand forecasting** — predicts blood demand by region so hospitals can prepare
-6. **Fake-request detection** — flags suspicious or duplicate emergency requests
-7. **Hospital dashboard** (web) — manage requests, track responses, view forecasts
-
-## Project Status
-
-🚧 **In active development** — currently in the design phase. The app is being built screen by screen, starting with onboarding, donor registration, and the emergency request flow.
-
-## Roadmap
-
-- [x] Concept, pitch, and system design
-- [ ] UI/UX design preview (mobile + web)
-- [ ] Project scaffolding (Expo + Firebase)
-- [ ] Auth + donor registration
-- [ ] Emergency request flow
-- [ ] AI matching engine (Python service)
-- [ ] Push + WhatsApp alerts
-- [ ] Demand forecasting dashboard
-- [ ] Beta release (Android, iOS, Web)
+</div>
 
 ---
 
-## About
+## What is BloodLink?
 
-Built by **Hussnain Ahmad** — BSCS student at Air University, Islamabad, working at the intersection of AI and real-world problems.
+In Pakistan, finding blood in an emergency still runs on panicked phone calls, WhatsApp forwards, and luck. Requests get lost, donors who want to help never hear about them, and families lose precious hours.
 
-- GitHub: [@hussnainahmedd](https://github.com/hussnainahmedd)
-- LinkedIn: [hussnainn](https://www.linkedin.com/in/hussnainn)
+**BloodLink fixes this.** A family posts one request — blood group, hospital, city. The system scores compatible donors nearby on three signals (compatibility × proximity × availability) and alerts the top matches instantly. A donor taps *accept*, donates, and a life is saved. Simple.
 
-## License
+> For the plain-English version of the idea, read [`PITCH.md`](PITCH.md).
+
+---
+
+## ✨ Features
+
+- 🩸 **Emergency requests** — post a request with blood group, units, hospital, city, and urgency; track it through a live status timeline (requested → matching → alerted → responding → fulfilled)
+- 🤖 **AI match scoring** — every candidate donor is ranked by *compatibility × proximity × availability*; incompatible groups score zero and drop out immediately
+- 🔔 **Instant alerts** — top-matched donors receive push notifications (WhatsApp-style alerts simulated in this version)
+- 🔍 **Find donors** — searchable donor directory with blood-group, city, and availability filters
+- 👥 **Dual dashboards** — dedicated home bases for **donors** (alerts, donation history, profile) and **hospitals** (requests, demand forecasts)
+- 🗓️ **Blood drives** — browse and register for donation camps and drives
+- ✅ **Eligibility checker** — interactive self-check (age, weight, hemoglobin, recent illness/tattoos/medication) before registering as a donor
+- 📚 **Learn hub** — articles on donation basics, myths, and aftercare
+- 💌 **Stories** — donor and recipient-family stories from the community
+- 🔐 **Auth flows** — sign up, login, email verification, and password reset screens
+- 🧾 **Full compatibility reference** — all 8 blood groups with donor/recipient charts and notes
+
+> **Status:** This repo is the frontend. It currently runs entirely on clearly-marked **demo data** (`lib/demo.ts`) — no real people, hospitals, or medical data. The Firebase backend (auth, Firestore, push) is stubbed in `lib/firebase.ts` and not yet connected.
+
+---
+
+## 🛠 Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Framework | Expo (SDK 57) + Expo Router (file-based routing, typed routes) |
+| UI | React Native 0.86, React 19, TypeScript |
+| Styling | NativeWind 4 (Tailwind CSS) with a custom warm-editorial design system (`styles/theme.ts`) |
+| Animation | Reanimated 4 + Gesture Handler (spring physics, magnetic buttons, parallax, tilt cards) |
+| Typography | Fraunces (display), Inter (sans), IBM Plex Mono (labels) via `@expo-google-fonts` |
+| Backend (planned) | Firebase — Auth, Firestore, Cloud Functions (TypeScript: matching, forecasting, fraud detection, alerts), Cloud Messaging |
+| Platforms | Android · iOS · Web — one codebase |
+
+**Design language:** warm paper surfaces (`#FAF9F7`), deep maroon dark sections, one crimson accent reserved for CTAs and urgency, frosted-glass cards, hairline borders instead of shadows.
+
+---
+
+## 🚀 Getting Started
+
+**Prerequisites:** Node.js 18+ and the [Expo Go](https://expo.dev/go) app (for testing on a phone).
+
+```bash
+# 1. Install dependencies
+npm install
+
+# 2. Start the dev server
+npx expo start
+```
+
+Then press `a` for Android, `i` for iOS, or `w` for web — or scan the QR code with Expo Go.
+
+**Web build** (for Vercel or any static host):
+
+```bash
+npm run build   # expo export --platform web
+```
+
+**Typecheck:**
+
+```bash
+npm run typecheck
+```
+
+---
+
+## 📸 Screenshots
+
+Screenshots are coming soon — the app is still in active development.
+
+---
+
+## 📁 Project Structure
+
+```
+app/              # Expo Router screens (file-based routing)
+├── (auth)/       # login, signup, verify-email, forgot-password
+├── (donor)/      # donor dashboard, alerts, history, profile
+├── (hospital)/   # hospital dashboard, requests, forecasts
+├── drives/       # blood drives listing + detail
+├── learn/        # donation articles + detail
+├── requests/     # new request flow + request detail/timeline
+├── stories/      # community stories + detail
+components/       # ui/ · motion/ · layout/ · home/ · donors/ · requests/ · dashboard/
+lib/              # demo.ts (demo data), firebase.ts (stub), validators, matching utils
+styles/           # theme.ts (design tokens), fonts.ts, global.css
+assets/           # hero banner + app assets
+PITCH.md          # plain-English explanation of the idea
+```
+
+---
+
+## 🗺 Roadmap
+
+- [x] Frontend v1 — all screens, warm editorial design, demo data
+- [ ] Firebase Auth + Firestore connection
+- [ ] TypeScript Cloud Functions (AI matching, demand forecasting, fraud detection, alerts)
+- [ ] Real push notifications (Expo Push) + WhatsApp alerts
+- [ ] Android APK via Expo (sideload) · iOS via Expo Go · web on Vercel
+
+---
+
+## 🤝 Contributing
+
+This is a personal project and the repo is private. If you've been given access and want to help, open an issue first to discuss what you'd like to change.
+
+## 📄 License
 
 MIT — free to learn from and build upon.
+
+---
+
+<div align="center">
+
+Made with ❤️ by **Hussnain Ahmad** — [github.com/hussnainahmedd](https://github.com/hussnainahmedd)
+
+</div>
