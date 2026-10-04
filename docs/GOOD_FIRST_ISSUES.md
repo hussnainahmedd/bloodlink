@@ -1,11 +1,27 @@
-# Good First Issues — draft list for maintainer review
+# Good First Issues
 
-These are **drafts**. None of them exist as GitHub issues yet. When BloodLink
-goes public, the maintainer will create the approved ones with the labels
-shown (`good first issue`, plus `hacktoberfest` during October).
+These issues are **live on GitHub** (created 2026-10-04 while the repo is
+still private, ready for the public launch):
 
-Each issue is scoped so a new contributor can finish it without designing the
-whole system, and every acceptance test can be checked against demo data.
+| # | Issue |
+|---|---|
+| #1 | Start here 👋 — welcome to BloodLink |
+| #2 | Implement blood-group compatibility helpers in `lib/blood-groups.ts` |
+| #3 | Implement form validators in `lib/validators.ts` |
+| #4 | Implement date/format helpers in `lib/format.ts` |
+| #5 | Add Vitest and unit tests for the 8×8 blood compatibility matrix |
+| #6 | Accessibility pass: form labels, focus states, contrast |
+| #7 | Audit `components/motion` for `prefers-reduced-motion` support |
+| #8 | Write the Firebase setup guide (`docs/FIREBASE_SETUP.md`) |
+| #9 | Design the Firestore data model (docs + types only) |
+| #10 | Wire up Firebase Auth |
+| #11 | Firestore Security Rules: hide donor contact until acceptance |
+| #12 | Implement the donor matching engine |
+| #13 | Urdu localization scaffolding (home + request flow) |
+
+Issues #2–#8 are unblocked today and demo-data safe. #10–#12 depend on the
+data-model discussion in #9. Full bodies with acceptance criteria live on
+each GitHub issue.
 
 ---
 
