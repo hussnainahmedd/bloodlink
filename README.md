@@ -6,6 +6,19 @@
 ![Status](https://img.shields.io/badge/status-frontend%20v1%20complete%20%C2%B7%20backend%20in%20progress-blue)
 ![Platform](https://img.shields.io/badge/platform-Android%20%7C%20iOS%20%7C%20Web-purple)
 ![License](https://img.shields.io/badge/license-MIT-green)
+![CI](https://github.com/hussnainahmedd/bloodlink/actions/workflows/ci.yml/badge.svg)
+
+**🌐 Live demo (web, demo data):** https://bloodlink-amber.vercel.app/
+
+## Screenshots
+
+| Home (desktop) | Home (mobile) |
+|---|---|
+| ![Home desktop](docs/screenshots/home-desktop.png) | ![Home mobile](docs/screenshots/home-mobile.png) |
+
+| Find donors | New emergency request |
+|---|---|
+| ![Find donors](docs/screenshots/find-donors.png) | ![New request](docs/screenshots/request-new.png) |
 
 ---
 
