@@ -30,9 +30,10 @@
     "start": "expo start",
     "typecheck": "tsc --noEmit",
     "web": "expo start --web",
-    "build": "expo export --platform web"
+    "build": "expo export --platform web",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
-  "version": "1.0.0",
   "dependencies": {
     "@expo-google-fonts/fraunces": "^0.4.1",
     "@expo-google-fonts/ibm-plex-mono": "^0.4.1",
@@ -58,6 +59,8 @@
     "tailwindcss": "^3.4.19"
   },
   "devDependencies": {
-    "typescript": "^7.0.2"
+    "typescript": "^7.0.2",
+    "vite": "^8.3.2",
+    "vitest": "^5.0.3"
   }
 }
