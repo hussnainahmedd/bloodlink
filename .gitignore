@@ -28,3 +28,19 @@ yarn-error.*
 # env
 .env
 .env*.local
+
+# firebase
+.firebase/
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+
+# vercel
+.vercel/
+
+# logs
+*.log
+
+# tests / coverage
+coverage/
+
