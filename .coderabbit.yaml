@@ -71,6 +71,129 @@ reviews:
       enabled: true
       enabled_only: false
 
+  # never send secrets or build output to review; keep signal high
+  path_filters:
+    - "!dist/**"
+    - "!node_modules/**"
+    - "!package-lock.json"
+    - "!**/*.webp"
+    - "!**/*.png"
+    - "!docs/screenshots/**"
+    - "!**/.env*"
+    - "!**/*secret*"
+    - "!**/*credential*"
+    - "!**/*.pem"
+    - "!**/*.key"
+    - "!**/*.p12"
+
+  path_instructions:
+    - path: "**"
+      instructions: >-
+        PROJECT RULES for every file. BloodLink is a fictional-demo prototype,
+        NOT a live medical service. Flag as HIGH severity: real personal data
+        (real names with blood groups, real phone numbers — demo placeholders
+        like +92 300 0000000 are fine), hard-coded API keys/tokens/passwords,
+        a donor phone number exposed before that donor accepts a request,
+        medical advice beyond general public donation-eligibility info, any
+        paid service/API or a Firebase Blaze-only feature (project budget is
+        $0, free tiers only), and any Python code (stack is TypeScript only).
+    - path: "lib/blood-groups.ts"
+      instructions: >-
+        Issue #2 scope. The full 8x8 matrix must match CAN_DONATE_TO /
+        CAN_RECEIVE_FROM in lib/demo.ts exactly: O- donates to all, AB+
+        receives from all. Helpers must be pure and typed. Flag any duplicated
+        hand-edited table that could drift from demo.ts.
+    - path: "lib/validators.ts"
+      instructions: >-
+        Issue #3 scope. Validators are pure functions with specific,
+        user-friendly error strings. Email, Pakistani mobile format,
+        blood-group selection, units 1-10, required fields. Flag vague errors
+        ("invalid") and any validation that silently passes bad input.
+    - path: "lib/format.ts"
+      instructions: >-
+        Issue #4 scope. Relative time, last-donation labels, distance (one
+        decimal under 10 km). Pure functions only, no locale surprises.
+    - path: "lib/firebase.ts"
+      instructions: >-
+        Issue #10 scope. Firebase init must come from EXPO_PUBLIC_* env vars
+        (.env.example). Flag committed credentials and any code path that
+        breaks demo mode when .env is absent. See SECURITY.md.
+    - path: "lib/auth.tsx"
+      instructions: >-
+        Issue #10 scope. Email auth with donor / hospital / admin roles.
+        Flag role checks done only in UI (must be enforceable by Firestore
+        rules), missing logout/session handling, and anything breaking demo mode.
+    - path: "lib/firestore.ts"
+      instructions: >-
+        Depends on issue #9 data model. Flag reads/writes that bypass
+        lib/api.ts, missing error handling, and any query that could return a
+        donor's contact before acceptance (SECURITY.md, issue #11).
+    - path: "lib/demo.ts"
+      instructions: >-
+        Demo data must stay clearly fictional. Flag real-sounding hospitals,
+        real phone numbers, invented statistics presented as real, and breaking
+        interface changes (Donor, BloodRequest, Drive, Story, Article) that
+        screens depend on.
+    - path: "lib/**"
+      instructions: >-
+        Business logic lives in lib/, not screens. Flag `any` without a
+        justifying comment, unhandled promise rejections, and imports of
+        server-only code (firebase-admin) into client code.
+    - path: "functions/src/matching.ts"
+      instructions: >-
+        Issue #12 scope. Score = compatibility x proximity x availability x
+        recency of last donation, with each factor visible/debuggable — flag
+        black-box scoring, hard-coded donor lists, and missing handling for
+        no-match / unavailable / recently-donated donors. Compatibility must
+        come from the shared matrix, never a second copy.
+    - path: "functions/src/**"
+      instructions: >-
+        TypeScript Cloud Functions only. Flag Blaze-plan-only features,
+        unvalidated callable-function inputs, missing auth checks, and any
+        function that reveals donor contact details before acceptance.
+    - path: "**/*.test.*"
+      instructions: >-
+        Issue #5 scope for compatibility tests: all 64 donor/recipient pairs
+        must be asserted against the matrix, not sampled. Generally: check
+        edge cases and failure cases, async correctness, and that tests would
+        actually fail if the implementation regressed. Do not nitpick test names.
+    - path: "app/**"
+      instructions: >-
+        Expo Router screens. They must keep working on demo data (lib/demo.ts)
+        unless the PR is the explicit Firebase swap for that screen. Check:
+        keyboard/screen-reader accessibility, visible focus states, form
+        labels, contrast, calm emergency UX (request completable in seconds),
+        and no business logic that belongs in lib/.
+    - path: "components/motion/**"
+      instructions: >-
+        Every motion component must respect prefers-reduced-motion and remain
+        subtle; motion must never block or slow an emergency request. Flag
+        transform-unfriendly animations that cause layout thrash.
+    - path: "components/**"
+      instructions: >-
+        Reusable UI only; no data fetching or business rules here. Check props
+        typing, accessibility roles/labels, and consistency with the existing
+        design system (Fraunces/Inter/Plex Mono editorial style).
+    - path: "docs/**"
+      instructions: >-
+        Docs must stay honest: frontend v1 done, backend/matching NOT done
+        until merged. Flag claims of real hospitals, real statistics, paid
+        services, Play Store/App Store availability, or a Python backend.
+        Firebase guide (issue #8) must contain no real credentials.
+    - path: "package.json"
+      instructions: >-
+        Flag new paid services, heavy/native dependencies without clear need,
+        removed typecheck/test scripts, and version downgrades. This project
+        is $0-budget and Expo-managed; native modules need justification.
+    - path: ".github/workflows/**"
+      instructions: >-
+        Least-privilege permissions, no secrets echoed in logs, pinned or
+        major-version actions, and jobs that fail loudly on type errors.
+    - path: "**/*.ur.*"
+      instructions: >-
+        Issue #13 scope (Urdu localization). Flag layout-breaking strings,
+        missing RTL-safe spacing, and machine-translated text not marked draft.
+
 chat:
   art: false
   auto_reply: true
@@ -102,125 +225,3 @@ code_generation:
   docstrings:
     language: "en-US"
 
-# never send secrets or build output to review; keep signal high
-path_filters:
-  - "!dist/**"
-  - "!node_modules/**"
-  - "!package-lock.json"
-  - "!**/*.webp"
-  - "!**/*.png"
-  - "!docs/screenshots/**"
-  - "!**/.env*"
-  - "!**/*secret*"
-  - "!**/*credential*"
-  - "!**/*.pem"
-  - "!**/*.key"
-  - "!**/*.p12"
-
-path_instructions:
-  - path: "**"
-    instructions: >-
-      PROJECT RULES for every file. BloodLink is a fictional-demo prototype,
-      NOT a live medical service. Flag as HIGH severity: real personal data
-      (real names with blood groups, real phone numbers — demo placeholders
-      like +92 300 0000000 are fine), hard-coded API keys/tokens/passwords,
-      a donor phone number exposed before that donor accepts a request,
-      medical advice beyond general public donation-eligibility info, any
-      paid service/API or a Firebase Blaze-only feature (project budget is
-      $0, free tiers only), and any Python code (stack is TypeScript only).
-  - path: "lib/blood-groups.ts"
-    instructions: >-
-      Issue #2 scope. The full 8x8 matrix must match CAN_DONATE_TO /
-      CAN_RECEIVE_FROM in lib/demo.ts exactly: O- donates to all, AB+
-      receives from all. Helpers must be pure and typed. Flag any duplicated
-      hand-edited table that could drift from demo.ts.
-  - path: "lib/validators.ts"
-    instructions: >-
-      Issue #3 scope. Validators are pure functions with specific,
-      user-friendly error strings. Email, Pakistani mobile format,
-      blood-group selection, units 1-10, required fields. Flag vague errors
-      ("invalid") and any validation that silently passes bad input.
-  - path: "lib/format.ts"
-    instructions: >-
-      Issue #4 scope. Relative time, last-donation labels, distance (one
-      decimal under 10 km). Pure functions only, no locale surprises.
-  - path: "lib/firebase.ts"
-    instructions: >-
-      Issue #10 scope. Firebase init must come from EXPO_PUBLIC_* env vars
-      (.env.example). Flag committed credentials and any code path that
-      breaks demo mode when .env is absent. See SECURITY.md.
-  - path: "lib/auth.tsx"
-    instructions: >-
-      Issue #10 scope. Email auth with donor / hospital / admin roles.
-      Flag role checks done only in UI (must be enforceable by Firestore
-      rules), missing logout/session handling, and anything breaking demo mode.
-  - path: "lib/firestore.ts"
-    instructions: >-
-      Depends on issue #9 data model. Flag reads/writes that bypass
-      lib/api.ts, missing error handling, and any query that could return a
-      donor's contact before acceptance (SECURITY.md, issue #11).
-  - path: "lib/demo.ts"
-    instructions: >-
-      Demo data must stay clearly fictional. Flag real-sounding hospitals,
-      real phone numbers, invented statistics presented as real, and breaking
-      interface changes (Donor, BloodRequest, Drive, Story, Article) that
-      screens depend on.
-  - path: "lib/**"
-    instructions: >-
-      Business logic lives in lib/, not screens. Flag `any` without a
-      justifying comment, unhandled promise rejections, and imports of
-      server-only code (firebase-admin) into client code.
-  - path: "functions/src/matching.ts"
-    instructions: >-
-      Issue #12 scope. Score = compatibility x proximity x availability x
-      recency of last donation, with each factor visible/debuggable — flag
-      black-box scoring, hard-coded donor lists, and missing handling for
-      no-match / unavailable / recently-donated donors. Compatibility must
-      come from the shared matrix, never a second copy.
-  - path: "functions/src/**"
-    instructions: >-
-      TypeScript Cloud Functions only. Flag Blaze-plan-only features,
-      unvalidated callable-function inputs, missing auth checks, and any
-      function that reveals donor contact details before acceptance.
-  - path: "**/*.test.*"
-    instructions: >-
-      Issue #5 scope for compatibility tests: all 64 donor/recipient pairs
-      must be asserted against the matrix, not sampled. Generally: check
-      edge cases and failure cases, async correctness, and that tests would
-      actually fail if the implementation regressed. Do not nitpick test names.
-  - path: "app/**"
-    instructions: >-
-      Expo Router screens. They must keep working on demo data (lib/demo.ts)
-      unless the PR is the explicit Firebase swap for that screen. Check:
-      keyboard/screen-reader accessibility, visible focus states, form
-      labels, contrast, calm emergency UX (request completable in seconds),
-      and no business logic that belongs in lib/.
-  - path: "components/motion/**"
-    instructions: >-
-      Every motion component must respect prefers-reduced-motion and remain
-      subtle; motion must never block or slow an emergency request. Flag
-      transform-unfriendly animations that cause layout thrash.
-  - path: "components/**"
-    instructions: >-
-      Reusable UI only; no data fetching or business rules here. Check props
-      typing, accessibility roles/labels, and consistency with the existing
-      design system (Fraunces/Inter/Plex Mono editorial style).
-  - path: "docs/**"
-    instructions: >-
-      Docs must stay honest: frontend v1 done, backend/matching NOT done
-      until merged. Flag claims of real hospitals, real statistics, paid
-      services, Play Store/App Store availability, or a Python backend.
-      Firebase guide (issue #8) must contain no real credentials.
-  - path: "package.json"
-    instructions: >-
-      Flag new paid services, heavy/native dependencies without clear need,
-      removed typecheck/test scripts, and version downgrades. This project
-      is $0-budget and Expo-managed; native modules need justification.
-  - path: ".github/workflows/**"
-    instructions: >-
-      Least-privilege permissions, no secrets echoed in logs, pinned or
-      major-version actions, and jobs that fail loudly on type errors.
-  - path: "**/*.ur.*"
-    instructions: >-
-      Issue #13 scope (Urdu localization). Flag layout-breaking strings,
-      missing RTL-safe spacing, and machine-translated text not marked draft.
