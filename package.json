@@ -1,6 +1,28 @@
 {
   "main": "expo-router/entry",
   "name": "bloodlink",
+  "version": "1.0.0",
+  "description": "BloodLink — emergency blood donor matching for Pakistan. Android, iOS, and Web from one Expo + TypeScript codebase.",
+  "license": "MIT",
+  "author": "Hussnain Ahmad (https://github.com/hussnainahmedd)",
+  "homepage": "https://github.com/hussnainahmedd/bloodlink#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hussnainahmedd/bloodlink.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hussnainahmedd/bloodlink/issues"
+  },
+  "keywords": [
+    "blood-donation",
+    "expo",
+    "react-native",
+    "typescript",
+    "firebase",
+    "donor-matching",
+    "pakistan",
+    "healthcare"
+  ],
   "private": true,
   "scripts": {
     "android": "expo start --android",
