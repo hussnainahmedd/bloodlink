@@ -74,9 +74,25 @@ docs: add Firebase setup guide
 
 ## Review and merging
 
-The maintainer ([@hussnainahmedd](https://github.com/hussnainahmedd)) reviews
-and merges PRs. Small, well-described PRs get reviewed fastest. If a PR sits
-for more than a week without a review, a polite ping on the PR is welcome.
+Every PR gets an automatic first review from **CodeRabbit**, configured
+specifically for BloodLink (`.coderabbit.yaml`): it checks your PR against
+the linked issue's acceptance criteria, the privacy rules in SECURITY.md,
+the $0-budget / TypeScript-only constraints, and per-area rules (matching
+matrix, Firebase, accessibility, motion). Treat its comments like a human
+reviewer's — fix what's valid, and reply explaining anything you disagree
+with.
+
+A PR is ready to merge when:
+
+- CodeRabbit has no unresolved major/actionable findings
+- CI (typecheck, and tests when present) and CodeQL are green
+- The linked issue's acceptance criteria are demonstrably met
+- No secrets, real personal data, paid services, or Python sneak in
+
+The maintainer ([@hussnainahmedd](https://github.com/hussnainahmedd))
+makes the final call and merges. Small, well-described PRs get reviewed
+fastest. If a PR sits for more than a week without a review, a polite ping
+on the PR is welcome.
 
 By contributing, you agree your contributions are licensed under the MIT
 License (see [LICENSE](LICENSE)), and that you follow the
