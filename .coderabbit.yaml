@@ -7,12 +7,9 @@
 
 language: "en-US"
 tone_instructions: >-
-  Review like a careful senior engineer mentoring contributors, many of whom
-  are first-time open-source contributors and students. Be direct and
-  specific: say what is wrong, why it matters for BloodLink, and how to fix
-  it. Keep each comment focused and actionable. Never be condescending.
-  Always assess the PR against its linked issue's acceptance criteria and
-  call out any criterion that is unmet, untested, or silently skipped.
+  Review carefully against the linked issue's acceptance criteria. Explain
+  what is wrong, why it matters, and the fix. Be direct, kind to first-time
+  contributors, and flag unmet or untested criteria.
 early_access: false
 enable_free_tier: true
 
