@@ -66,7 +66,7 @@ within minutes and alerts them instantly — no searching, no forwarded messages
 | Frontend (Android / iOS / Web from one Expo codebase) | ✅ **v1 complete** — home, find donors, emergency request flow, blood-group guide, eligibility checker, drives, stories, knowledge hub, donor & hospital dashboards |
 | Demo data layer (`lib/demo.ts`) | ✅ Complete — the whole UI runs without a backend |
 | Backend (Firebase Auth + Firestore) | 🚧 Not started — see [ROADMAP.md](ROADMAP.md) |
-| Matching engine (TypeScript Cloud Functions) | 🚧 Designed, not implemented — `lib/matching.ts` and `functions/src/matching.ts` are empty stubs |
+| Matching engine (TypeScript Cloud Functions) | 🚧 Designed, not implemented — `lib/matching.ts` and `functions/src/matching.ts` are stubs awaiting implementation |
 | Alerts | 🚧 Push notifications planned; WhatsApp-style alert is **simulated in-app** in v1 (the real WhatsApp Business API is pluggable later) |
 
 Contributions toward the 🚧 items are exactly what this project is open for.
