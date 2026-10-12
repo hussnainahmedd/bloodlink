@@ -46,33 +46,94 @@ const EMPTY: Filters = {
 
 const CITIES = ['Islamabad', 'Rawalpindi'];
 
-function CycleSelect({ value, options, onChange }: { value: string; options: string[]; onChange: (v: string) => void }) {
-  const next = () => {
-    const i = options.indexOf(value);
-    onChange(options[(i + 1) % options.length]);
-  };
+function Dropdown({
+  id,
+  openId,
+  setOpenId,
+  value,
+  options,
+  onChange,
+}: {
+  id: string;
+  openId: string | null;
+  setOpenId: (id: string | null) => void;
+  value: string;
+  options: string[];
+  onChange: (v: string) => void;
+}) {
+  const open = openId === id;
   return (
-    <Pressable
-      accessibilityRole="button"
-      onPress={next}
-      style={{
-        borderWidth: 1,
-        borderColor: classic.hairline,
-        borderRadius: 6,
-        paddingHorizontal: 12,
-        paddingVertical: 9,
-        backgroundColor: '#FFFFFF',
-        minWidth: 130,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-      }}
-    >
-      <Text style={{ fontFamily: fonts.sans, fontSize: 13, color: classic.ink }} numberOfLines={1}>
-        {value}
-      </Text>
-      <Text style={{ fontFamily: fonts.sans, fontSize: 11, color: classic.muted, marginLeft: 8 }}>▾</Text>
-    </Pressable>
+    <View style={{ minWidth: 150 }}>
+      <Pressable
+        accessibilityRole="button"
+        onPress={() => setOpenId(open ? null : id)}
+        style={{
+          borderWidth: 1,
+          borderColor: classic.hairline,
+          borderRadius: 6,
+          borderBottomLeftRadius: open ? 0 : 6,
+          borderBottomRightRadius: open ? 0 : 6,
+          paddingHorizontal: 12,
+          paddingVertical: 9,
+          backgroundColor: '#FFFFFF',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}
+      >
+        <Text style={{ fontFamily: fonts.sans, fontSize: 13, color: classic.ink }} numberOfLines={1}>
+          {value}
+        </Text>
+        <Text style={{ fontFamily: fonts.sans, fontSize: 11, color: classic.muted, marginLeft: 8 }}>
+          {open ? '▴' : '▾'}
+        </Text>
+      </Pressable>
+      {open && (
+        <View
+          style={{
+            borderWidth: 1,
+            borderTopWidth: 0,
+            borderColor: classic.hairline,
+            borderBottomLeftRadius: 6,
+            borderBottomRightRadius: 6,
+            backgroundColor: '#FFFFFF',
+            maxHeight: 210,
+          }}
+        >
+          <ScrollView nestedScrollEnabled showsVerticalScrollIndicator={true}>
+            {options.map((opt) => {
+              const selected = opt === value;
+              return (
+                <Pressable
+                  key={opt}
+                  accessibilityRole="button"
+                  onPress={() => {
+                    onChange(opt);
+                    setOpenId(null);
+                  }}
+                  style={{
+                    paddingHorizontal: 12,
+                    paddingVertical: 11,
+                    backgroundColor: selected ? '#EAF1FE' : '#FFFFFF',
+                  }}
+                >
+                  <Text
+                    style={{
+                      fontFamily: selected ? fonts.sansSemiBold : fonts.sans,
+                      fontSize: 13,
+                      color: selected ? '#1D4ED8' : classic.ink,
+                    }}
+                    numberOfLines={1}
+                  >
+                    {opt}
+                  </Text>
+                </Pressable>
+              );
+            })}
+          </ScrollView>
+        </View>
+      )}
+    </View>
   );
 }
 
@@ -122,6 +183,9 @@ export default function FindDonorsScreen() {
   const [draft, setDraft] = useState<Filters>(EMPTY);
   const [applied, setApplied] = useState<Filters>(EMPTY);
   const [page, setPage] = useState(1);
+  const [openId, setOpenId] = useState<string | null>(null);
+
+  const dd = (id: string) => ({ id, openId, setOpenId });
 
   const set = (k: keyof Filters) => (v: string) => {
     setDraft((d) => ({ ...d, [k]: v }));
@@ -210,7 +274,7 @@ export default function FindDonorsScreen() {
               </Text>
 
               <FilterRow label="Status">
-                <CycleSelect value={draft.status} options={['All', 'Available', 'Not available']} onChange={set('status')} />
+                <Dropdown {...dd('status')} value={draft.status} options={['All', 'Available', 'Not available']} onChange={set('status')} />
               </FilterRow>
               <FilterRow label="Name">
                 <TextInput
@@ -225,7 +289,7 @@ export default function FindDonorsScreen() {
                 />
               </FilterRow>
               <FilterRow label="Gender">
-                <CycleSelect value={draft.gender} options={['All', 'Male', 'Female']} onChange={set('gender')} />
+                <Dropdown {...dd('gender')} value={draft.gender} options={['All', 'Male', 'Female']} onChange={set('gender')} />
               </FilterRow>
               <FilterRow label="Age">
                 <TextInput
@@ -241,16 +305,16 @@ export default function FindDonorsScreen() {
                 />
               </FilterRow>
               <FilterRow label="Province">
-                <CycleSelect value={draft.province} options={['All', ...PROVINCES]} onChange={set('province')} />
+                <Dropdown {...dd('province')} value={draft.province} options={['All', ...PROVINCES]} onChange={set('province')} />
               </FilterRow>
               <FilterRow label="City">
-                <CycleSelect value={draft.city} options={['All', ...CITIES]} onChange={set('city')} />
+                <Dropdown {...dd('city')} value={draft.city} options={['All', ...CITIES]} onChange={set('city')} />
               </FilterRow>
               <FilterRow label="Blood Group">
-                <CycleSelect value={draft.bloodGroup} options={['All', ...BLOOD_GROUPS]} onChange={set('bloodGroup')} />
+                <Dropdown {...dd('bloodGroup')} value={draft.bloodGroup} options={['All', ...BLOOD_GROUPS]} onChange={set('bloodGroup')} />
               </FilterRow>
               <FilterRow label="Health Status">
-                <CycleSelect value={draft.healthStatus} options={['All', 'Eligible', 'Deferred']} onChange={set('healthStatus')} />
+                <Dropdown {...dd('healthStatus')} value={draft.healthStatus} options={['All', 'Eligible', 'Deferred']} onChange={set('healthStatus')} />
               </FilterRow>
 
               <View className="flex-row gap-3 mt-4">
