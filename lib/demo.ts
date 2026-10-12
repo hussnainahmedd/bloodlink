@@ -56,6 +56,10 @@ export interface Donor {
   name: string;
   bloodGroup: BloodGroup;
   city: string;
+  province: string;
+  gender: 'Male' | 'Female';
+  age: number;
+  healthStatus: 'eligible' | 'deferred';
   distanceKm: number;
   available: boolean;
   lastDonation: string;
@@ -113,15 +117,17 @@ export interface Article {
 }
 
 export const donors: Donor[] = [
-  { id: 'd1', name: 'Ayesha K.', bloodGroup: 'O-', city: 'Islamabad', distanceKm: 2.1, available: true, lastDonation: 'Jan 2026', donations: 6 },
-  { id: 'd2', name: 'Bilal R.', bloodGroup: 'B+', city: 'Islamabad', distanceKm: 3.4, available: true, lastDonation: 'Nov 2025', donations: 3 },
-  { id: 'd3', name: 'Fatima S.', bloodGroup: 'A+', city: 'Rawalpindi', distanceKm: 5.8, available: true, lastDonation: 'Dec 2025', donations: 4 },
-  { id: 'd4', name: 'Usman T.', bloodGroup: 'O+', city: 'Islamabad', distanceKm: 6.2, available: false, lastDonation: 'Aug 2026', donations: 9 },
-  { id: 'd5', name: 'Hira M.', bloodGroup: 'AB-', city: 'Rawalpindi', distanceKm: 7.9, available: true, lastDonation: 'Mar 2026', donations: 2 },
-  { id: 'd6', name: 'Danish A.', bloodGroup: 'B-', city: 'Islamabad', distanceKm: 8.5, available: true, lastDonation: 'Feb 2026', donations: 5 },
-  { id: 'd7', name: 'Sana J.', bloodGroup: 'A-', city: 'Islamabad', distanceKm: 9.3, available: true, lastDonation: 'Oct 2025', donations: 7 },
-  { id: 'd8', name: 'Kamran H.', bloodGroup: 'AB+', city: 'Rawalpindi', distanceKm: 11.0, available: false, lastDonation: 'Jul 2026', donations: 1 },
+  { id: 'd1', name: 'Ayesha K.', bloodGroup: 'O-', city: 'Islamabad', province: 'Islamabad Capital Territory', gender: 'Female', age: 28, healthStatus: 'eligible', distanceKm: 2.1, available: true, lastDonation: 'Jan 2026', donations: 6 },
+  { id: 'd2', name: 'Bilal R.', bloodGroup: 'B+', city: 'Islamabad', province: 'Islamabad Capital Territory', gender: 'Male', age: 34, healthStatus: 'eligible', distanceKm: 3.4, available: true, lastDonation: 'Nov 2025', donations: 3 },
+  { id: 'd3', name: 'Fatima S.', bloodGroup: 'A+', city: 'Rawalpindi', province: 'Punjab', gender: 'Female', age: 26, healthStatus: 'eligible', distanceKm: 5.8, available: true, lastDonation: 'Dec 2025', donations: 4 },
+  { id: 'd4', name: 'Usman T.', bloodGroup: 'O+', city: 'Islamabad', province: 'Islamabad Capital Territory', gender: 'Male', age: 41, healthStatus: 'eligible', distanceKm: 6.2, available: false, lastDonation: 'Aug 2026', donations: 9 },
+  { id: 'd5', name: 'Hira M.', bloodGroup: 'AB-', city: 'Rawalpindi', province: 'Punjab', gender: 'Female', age: 23, healthStatus: 'eligible', distanceKm: 7.9, available: true, lastDonation: 'Mar 2026', donations: 2 },
+  { id: 'd6', name: 'Danish A.', bloodGroup: 'B-', city: 'Islamabad', province: 'Islamabad Capital Territory', gender: 'Male', age: 31, healthStatus: 'eligible', distanceKm: 8.5, available: true, lastDonation: 'Feb 2026', donations: 5 },
+  { id: 'd7', name: 'Sana J.', bloodGroup: 'A-', city: 'Islamabad', province: 'Islamabad Capital Territory', gender: 'Female', age: 29, healthStatus: 'eligible', distanceKm: 9.3, available: true, lastDonation: 'Oct 2025', donations: 7 },
+  { id: 'd8', name: 'Kamran H.', bloodGroup: 'AB+', city: 'Rawalpindi', province: 'Punjab', gender: 'Male', age: 38, healthStatus: 'deferred', distanceKm: 11.0, available: false, lastDonation: 'Jul 2026', donations: 1 },
 ];
+
+export const PROVINCES = ['Islamabad Capital Territory', 'Punjab'] as const;
 
 export const activeRequest: BloodRequest = {
   id: 'req-1042',
