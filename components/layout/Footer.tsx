@@ -76,7 +76,7 @@ export function Footer() {
 
         <View className="border-t border-hairlineOnDark mt-12 pt-6 flex-col md:flex-row md:items-center md:justify-between gap-2">
           <Text style={textStyles.caption} className="text-mutedOnDark">
-            © 2026 BloodLink — showcase project. All data shown is fictional demo content.
+            © {new Date().getFullYear()} BloodLink — showcase project. All data shown is fictional demo content.
           </Text>
           <Text style={textStyles.caption} className="text-mutedOnDark">
             Built with React Native + Expo + Firebase · $0 budget
