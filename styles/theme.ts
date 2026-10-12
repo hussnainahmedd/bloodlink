@@ -57,6 +57,11 @@ export const fonts = {
   mono: 'PlexMono-Regular',
   monoMedium: 'PlexMono-Medium',
   monoSemiBold: 'PlexMono-SemiBold',
+  /* classic site serif (matches the original BloodLink design) */
+  serif: 'RobotoSlab-Regular',
+  serifMedium: 'RobotoSlab-Medium',
+  serifSemiBold: 'RobotoSlab-SemiBold',
+  serifBold: 'RobotoSlab-Bold',
 } as const;
 
 export type FontName = (typeof fonts)[keyof typeof fonts];
@@ -188,4 +193,23 @@ export const shadows = {
     shadowOffset: { width: 0, height: 8 },
     elevation: 8,
   },
+} as const;
+
+/**
+ * Classic BloodLink site tokens — the original red/white design.
+ * Used by the public landing page (Header, hero, features, contact,
+ * about, Footer) to match the legacy bloodlink.vercel.app look.
+ */
+export const classic = {
+  red: '#C8102E',
+  redDeep: '#A00D26',
+  redSoft: '#F9E8EB',
+  ink: '#212529',
+  inkSoft: '#495057',
+  muted: '#6C757D',
+  paper: '#FFFFFF',
+  paperDeep: '#F1F1F1',
+  card: '#F8F9FA',
+  hairline: '#DEE2E6',
+  panelBlue: 'rgba(220, 232, 242, 0.92)', // hero card tint
 } as const;

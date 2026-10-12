@@ -1,26 +1,36 @@
-import { Link } from 'expo-router';
+import { Link, useRouter } from 'expo-router';
 import React, { useState } from 'react';
-import { Pressable, Text, View } from 'react-native';
-import { fonts } from '../../styles/theme';
-import { Button } from '../ui/Button';
+import { Platform, Pressable, Text, View } from 'react-native';
+import { classic, fonts } from '../../styles/theme';
 import { Container } from './Container';
 import { MobileNav } from './MobileNav';
 
 const links = [
-  { label: 'Find donors', href: '/find-donors' },
-  { label: 'How it works', href: '/how-it-works' },
-  { label: 'Drives', href: '/drives' },
-  { label: 'Stories', href: '/stories' },
-  { label: 'Learn', href: '/learn' },
+  { label: 'Home', section: 'top' },
+  { label: 'Features', section: 'features' },
+  { label: 'Contact', section: 'contact' },
+  { label: 'About', section: 'about' },
 ] as const;
 
-function Logo() {
+function scrollToSection(section: string) {
+  if (Platform.OS === 'web' && typeof document !== 'undefined') {
+    if (section === 'top') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+    document.getElementById(section)?.scrollIntoView({ behavior: 'smooth' });
+  }
+}
+
+export function Logo() {
   return (
     <Link href="/" asChild>
-      <Pressable accessibilityRole="link" accessibilityLabel="BloodLink home" className="flex-row items-center">
-        <View className="w-3 h-3 rounded-full bg-crimson mr-2" />
-        <Text style={{ fontFamily: fonts.displaySemiBold, fontSize: 20, letterSpacing: -0.01 * 20 }}>
-          BloodLink
+      <Pressable accessibilityRole="link" accessibilityLabel="BloodLink home">
+        <Text style={{ fontFamily: fonts.serifBold, fontSize: 30 }}>
+          <Text style={{ color: classic.red }}>Blood</Text>
+          <Text style={{ color: classic.ink, textDecorationLine: 'underline', textDecorationColor: classic.red }}>
+            Link
+          </Text>
         </Text>
       </Pressable>
     </Link>
@@ -28,58 +38,65 @@ function Logo() {
 }
 
 /**
- * Top navigation — frosted glass, sticks to the top on scroll.
- * Center links on web/wide screens, hamburger + overlay menu on mobile.
+ * Classic site header — white, sticky, serif logo, section nav + Login.
+ * Matches the original bloodlink.vercel.app design.
  */
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const router = useRouter();
 
   return (
     <>
-      <View className="site-header">
+      <View className="site-header-classic">
         <Container>
           <View className="flex-row items-center justify-between h-16">
-          <Logo />
+            <Logo />
 
-          {/* web nav */}
-          <View className="hidden md:flex flex-row items-center gap-8">
-            {links.map((l) => (
-              <Link key={l.href} href={l.href} asChild>
-                <Pressable accessibilityRole="link">
-                  <Text style={{ fontFamily: fonts.sansMedium, fontSize: 14 }} className="text-inkSoft">
+            {/* web nav */}
+            <View className="hidden md:flex flex-row items-center gap-8">
+              {links.map((l) => (
+                <Pressable
+                  key={l.label}
+                  accessibilityRole="link"
+                  onPress={() => {
+                    if (l.section === 'top') {
+                      router.push('/');
+                      setTimeout(() => scrollToSection('top'), 50);
+                    } else {
+                      scrollToSection(l.section);
+                    }
+                  }}
+                >
+                  <Text style={{ fontFamily: fonts.sansMedium, fontSize: 15, color: classic.ink }}>
                     {l.label}
                   </Text>
                 </Pressable>
+              ))}
+              <Link href="/(auth)/login" asChild>
+                <Pressable
+                  accessibilityRole="link"
+                  style={{ backgroundColor: classic.red, borderRadius: 6, paddingHorizontal: 22, paddingVertical: 9 }}
+                >
+                  <Text style={{ fontFamily: fonts.sansSemiBold, fontSize: 15, color: '#FFFFFF' }}>
+                    Login
+                  </Text>
+                </Pressable>
               </Link>
-            ))}
-          </View>
-
-          <View className="hidden md:flex flex-row items-center gap-3">
-            <Link href="/(auth)/login" asChild>
-              <Pressable accessibilityRole="link">
-                <Text style={{ fontFamily: fonts.sansMedium, fontSize: 14 }} className="text-ink">
-                  Sign in
-                </Text>
-              </Pressable>
-            </Link>
-            <Link href="/requests/new" asChild>
-              <Button title="Request Blood Now" size="sm" />
-            </Link>
-          </View>
-
-          {/* mobile hamburger */}
-          <Pressable
-            accessibilityRole="button"
-            accessibilityLabel="Open menu"
-            onPress={() => setMenuOpen(true)}
-            className="md:hidden p-2"
-          >
-            <View className="gap-1.5">
-              <View className="w-6 h-0.5 bg-ink" />
-              <View className="w-6 h-0.5 bg-ink" />
-              <View className="w-4 h-0.5 bg-ink" />
             </View>
-          </Pressable>
+
+            {/* mobile hamburger */}
+            <Pressable
+              accessibilityRole="button"
+              accessibilityLabel="Open menu"
+              onPress={() => setMenuOpen(true)}
+              className="md:hidden p-2"
+            >
+              <View className="gap-1.5">
+                <View className="w-6 h-0.5 bg-[#212529]" />
+                <View className="w-6 h-0.5 bg-[#212529]" />
+                <View className="w-4 h-0.5 bg-[#212529]" />
+              </View>
+            </Pressable>
           </View>
         </Container>
       </View>

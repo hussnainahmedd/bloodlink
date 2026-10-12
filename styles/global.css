@@ -81,6 +81,16 @@ button:focus-visible,
   border-bottom: 1px solid rgba(231, 226, 220, 0.9);
 }
 
+/* Classic site header — solid white, sticky */
+.site-header-classic {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: #ffffff;
+  border-bottom: 1px solid #ececec;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
 /* Soft ambient wash behind glass surfaces on paper */
 .ambient-paper {
   background:

@@ -3,29 +3,25 @@ import { ScrollView, View } from 'react-native';
 import { Footer } from '../components/layout/Footer';
 import { Header } from '../components/layout/Header';
 import { SEO } from '../components/layout/SEO';
-import { CTA } from '../components/home/CTA';
-import { Hero } from '../components/home/Hero';
-import { HowItWorks } from '../components/home/HowItWorks';
-import { Stats } from '../components/home/Stats';
-import { Stories } from '../components/home/Stories';
+import { ClassicAbout, ClassicContact, ClassicFeatures, ClassicHero } from '../components/home/ClassicSections';
 
 /**
- * Homepage: cinematic hero → stats → how it works → stories → CTA.
+ * Homepage — classic BloodLink design: hero → features → contact → about.
+ * Matches the original bloodlink.vercel.app look, with Pakistan imagery.
  */
 export default function HomeScreen() {
   return (
-    <View className="flex-1 bg-paper">
+    <View className="flex-1 bg-white">
       <SEO
         title="BloodLink"
-        description="AI-powered emergency blood donor network for Pakistan. Request blood, get matched donors in minutes."
+        description="BloodLink is a community of people motivated to help save others through blood donation in Pakistan."
       />
       <Header />
       <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
-        <Hero />
-        <Stats />
-        <HowItWorks />
-        <Stories />
-        <CTA />
+        <ClassicHero />
+        <ClassicFeatures />
+        <ClassicContact />
+        <ClassicAbout />
         <Footer />
       </ScrollView>
     </View>

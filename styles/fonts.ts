@@ -17,6 +17,12 @@ import {
   Inter_600SemiBold,
   Inter_700Bold,
 } from '@expo-google-fonts/inter';
+import {
+  RobotoSlab_400Regular,
+  RobotoSlab_500Medium,
+  RobotoSlab_600SemiBold,
+  RobotoSlab_700Bold,
+} from '@expo-google-fonts/roboto-slab';
 
 /**
  * Loads every weight the theme references. Keys MUST match the family
@@ -24,6 +30,7 @@ import {
  *   Fraunces-Regular / -Medium / -SemiBold / -Bold
  *   Inter-Regular    / -Medium / -SemiBold / -Bold
  *   PlexMono-Regular / -Medium / -SemiBold
+ *   RobotoSlab-Regular / -Medium / -SemiBold / -Bold  (classic site serif)
  *
  * Returns [loaded, error] in the expo-font useFonts convention.
  */
@@ -42,5 +49,9 @@ export function useAppFonts(): [boolean, Error | null] {
     'PlexMono-SemiBold': IBMPlexMono_600SemiBold,
     // PlexMono has no -Bold weight loaded; theme never references one.
     'PlexMono-Bold': IBMPlexMono_700Bold,
+    'RobotoSlab-Regular': RobotoSlab_400Regular,
+    'RobotoSlab-Medium': RobotoSlab_500Medium,
+    'RobotoSlab-SemiBold': RobotoSlab_600SemiBold,
+    'RobotoSlab-Bold': RobotoSlab_700Bold,
   });
 }
