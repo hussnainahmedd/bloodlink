@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Pressable, ScrollView, Text, TextInput, View } from 'react-native';
-import { BLOOD_GROUPS, PROVINCES, donors, type Donor } from '../lib/demo';
+import { BLOOD_GROUPS, CITIES, PROVINCES, donors, type Donor } from '../lib/demo';
 import { classic, fonts } from '../styles/theme';
 import { Container } from '../components/layout/Container';
 import { Footer } from '../components/layout/Footer';
@@ -43,8 +43,6 @@ const EMPTY: Filters = {
   bloodGroup: 'All',
   healthStatus: 'All',
 };
-
-const CITIES = ['Islamabad', 'Rawalpindi'];
 
 function Dropdown({
   id,

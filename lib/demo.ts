@@ -125,9 +125,51 @@ export const donors: Donor[] = [
   { id: 'd6', name: 'Danish A.', bloodGroup: 'B-', city: 'Islamabad', province: 'Islamabad Capital Territory', gender: 'Male', age: 31, healthStatus: 'eligible', distanceKm: 8.5, available: true, lastDonation: 'Feb 2026', donations: 5 },
   { id: 'd7', name: 'Sana J.', bloodGroup: 'A-', city: 'Islamabad', province: 'Islamabad Capital Territory', gender: 'Female', age: 29, healthStatus: 'eligible', distanceKm: 9.3, available: true, lastDonation: 'Oct 2025', donations: 7 },
   { id: 'd8', name: 'Kamran H.', bloodGroup: 'AB+', city: 'Rawalpindi', province: 'Punjab', gender: 'Male', age: 38, healthStatus: 'deferred', distanceKm: 11.0, available: false, lastDonation: 'Jul 2026', donations: 1 },
+  { id: 'd9', name: 'Ahmed S.', bloodGroup: 'A+', city: 'Karachi', province: 'Sindh', gender: 'Male', age: 35, healthStatus: 'eligible', distanceKm: 14.2, available: true, lastDonation: 'Sep 2026', donations: 5 },
+  { id: 'd10', name: 'Mahnoor F.', bloodGroup: 'B+', city: 'Lahore', province: 'Punjab', gender: 'Female', age: 24, healthStatus: 'eligible', distanceKm: 16.8, available: true, lastDonation: 'Aug 2026', donations: 3 },
+  { id: 'd11', name: 'Imran K.', bloodGroup: 'O+', city: 'Peshawar', province: 'Khyber Pakhtunkhwa', gender: 'Male', age: 39, healthStatus: 'eligible', distanceKm: 18.5, available: true, lastDonation: 'Jul 2026', donations: 8 },
+  { id: 'd12', name: 'Saad R.', bloodGroup: 'AB+', city: 'Karachi', province: 'Sindh', gender: 'Male', age: 27, healthStatus: 'eligible', distanceKm: 21.3, available: false, lastDonation: 'Jun 2026', donations: 2 },
+  { id: 'd13', name: 'Nadia H.', bloodGroup: 'O-', city: 'Quetta', province: 'Balochistan', gender: 'Female', age: 32, healthStatus: 'eligible', distanceKm: 24.0, available: true, lastDonation: 'Sep 2026', donations: 4 },
+  { id: 'd14', name: 'Fahad M.', bloodGroup: 'B-', city: 'Multan', province: 'Punjab', gender: 'Male', age: 29, healthStatus: 'eligible', distanceKm: 26.4, available: true, lastDonation: 'May 2026', donations: 6 },
+  { id: 'd15', name: 'Rabia T.', bloodGroup: 'A-', city: 'Faisalabad', province: 'Punjab', gender: 'Female', age: 26, healthStatus: 'eligible', distanceKm: 29.1, available: true, lastDonation: 'Aug 2026', donations: 3 },
+  { id: 'd16', name: 'Tariq A.', bloodGroup: 'O+', city: 'Hyderabad', province: 'Sindh', gender: 'Male', age: 44, healthStatus: 'deferred', distanceKm: 31.7, available: false, lastDonation: 'Apr 2026', donations: 7 },
+  { id: 'd17', name: 'Ali N.', bloodGroup: 'B+', city: 'Gilgit', province: 'Gilgit-Baltistan', gender: 'Male', age: 30, healthStatus: 'eligible', distanceKm: 34.2, available: true, lastDonation: 'Jul 2026', donations: 2 },
+  { id: 'd18', name: 'Shazia B.', bloodGroup: 'A+', city: 'Muzaffarabad', province: 'Azad Jammu and Kashmir', gender: 'Female', age: 28, healthStatus: 'eligible', distanceKm: 36.9, available: true, lastDonation: 'Jun 2026', donations: 4 },
 ];
 
-export const PROVINCES = ['Islamabad Capital Territory', 'Punjab'] as const;
+export const PROVINCES = [
+  'Punjab',
+  'Sindh',
+  'Khyber Pakhtunkhwa',
+  'Balochistan',
+  'Gilgit-Baltistan',
+  'Azad Jammu and Kashmir',
+  'Islamabad Capital Territory',
+] as const;
+
+/** Famous cities of Pakistan (not exhaustive). */
+export const CITIES = [
+  'Karachi',
+  'Lahore',
+  'Islamabad',
+  'Rawalpindi',
+  'Faisalabad',
+  'Multan',
+  'Peshawar',
+  'Quetta',
+  'Hyderabad',
+  'Sialkot',
+  'Gujranwala',
+  'Sargodha',
+  'Bahawalpur',
+  'Abbottabad',
+  'Sukkur',
+  'Mardan',
+  'Mingora',
+  'Gilgit',
+  'Muzaffarabad',
+  'Mirpur',
+] as const;
 
 export const activeRequest: BloodRequest = {
   id: 'req-1042',
