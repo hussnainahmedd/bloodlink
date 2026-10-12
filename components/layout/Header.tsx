@@ -40,10 +40,14 @@ export function Logo() {
 /**
  * Classic site header — white, sticky, serif logo, section nav + Login.
  * Matches the original bloodlink.vercel.app design.
+ * On auth pages, pass authAction to swap the button (Register <-> Login).
  */
-export function Header() {
+export function Header({ authAction }: { authAction?: 'login' | 'register' }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();
+
+  const actionLabel = authAction === 'register' ? 'Register' : authAction === 'login' ? 'Login' : null;
+  const actionHref = authAction === 'register' ? '/(auth)/signup' : '/(auth)/login';
 
   return (
     <>
@@ -72,16 +76,29 @@ export function Header() {
                   </Text>
                 </Pressable>
               ))}
-              <Link href="/(auth)/login" asChild>
-                <Pressable
-                  accessibilityRole="link"
-                  style={{ backgroundColor: classic.red, borderRadius: 6, paddingHorizontal: 22, paddingVertical: 9 }}
-                >
-                  <Text style={{ fontFamily: fonts.sansSemiBold, fontSize: 15, color: '#FFFFFF' }}>
-                    Login
-                  </Text>
-                </Pressable>
-              </Link>
+              {actionLabel ? (
+                <Link href={actionHref as never} asChild>
+                  <Pressable
+                    accessibilityRole="link"
+                    style={{ backgroundColor: '#5C1A1B', borderRadius: 6, paddingHorizontal: 22, paddingVertical: 9 }}
+                  >
+                    <Text style={{ fontFamily: fonts.sansSemiBold, fontSize: 15, color: '#FFFFFF' }}>
+                      {actionLabel}
+                    </Text>
+                  </Pressable>
+                </Link>
+              ) : (
+                <Link href="/(auth)/login" asChild>
+                  <Pressable
+                    accessibilityRole="link"
+                    style={{ backgroundColor: classic.red, borderRadius: 6, paddingHorizontal: 22, paddingVertical: 9 }}
+                  >
+                    <Text style={{ fontFamily: fonts.sansSemiBold, fontSize: 15, color: '#FFFFFF' }}>
+                      Login
+                    </Text>
+                  </Pressable>
+                </Link>
+              )}
             </View>
 
             {/* mobile hamburger */}
